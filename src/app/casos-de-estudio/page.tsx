@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
@@ -24,7 +25,8 @@ interface CaseStudy {
 }
 
 export default function CaseStudiesPage() {
-  
+  const [showMore, setShowMore] = useState(false);
+
   // Case studies data - currently only e-ticketpro
   const caseStudies: CaseStudy[] = [
     {
@@ -84,6 +86,42 @@ export default function CaseStudiesPage() {
     }
   ];
 
+  const extraCaseStudies: CaseStudy[] = [
+    {
+      id: '6',
+      title: 'Proyecto 6 — Próximamente',
+      excerpt: 'Descripción del proyecto 6. Reemplazá este texto con la información real del cliente.',
+      client: 'Cliente 6',
+      industry: 'INDUSTRIA',
+      services: ['Desarrollo Web'],
+      results: 'Resultados del proyecto',
+      slug: '#',
+      image: ETICKETPRO,
+    },
+    {
+      id: '7',
+      title: 'Proyecto 7 — Próximamente',
+      excerpt: 'Descripción del proyecto 7. Reemplazá este texto con la información real del cliente.',
+      client: 'Cliente 7',
+      industry: 'INDUSTRIA',
+      services: ['Desarrollo Web'],
+      results: 'Resultados del proyecto',
+      slug: '#',
+      image: Yesica,
+    },
+    {
+      id: '8',
+      title: 'Proyecto 8 — Próximamente',
+      excerpt: 'Descripción del proyecto 8. Reemplazá este texto con la información real del cliente.',
+      client: 'Cliente 8',
+      industry: 'INDUSTRIA',
+      services: ['Desarrollo Web'],
+      results: 'Resultados del proyecto',
+      slug: '#',
+      image: AJR,
+    },
+  ];
+
   return (
     <>
       {/* Hero Section */}
@@ -123,13 +161,9 @@ export default function CaseStudiesPage() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:gap-12">
             {caseStudies.map((caseStudy) => (
-              <article
-                key={caseStudy.id}
-                className="group"
-              >
+              <article key={caseStudy.id} className="group">
                 <Link href={`${caseStudy.slug}`} className="block" target="_blank" rel="noopener noreferrer">
                   <div className="grid md:grid-cols-2 gap-0 items-center bg-white border border-gray-200 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
-                    {/* Image */}
                     <div className="relative h-[220px] sm:h-[280px] md:h-full min-h-[260px] bg-gray-100">
                       {caseStudy.image && (
                         <Image
@@ -142,25 +176,60 @@ export default function CaseStudiesPage() {
                         />
                       )}
                     </div>
-                    
-                    {/* Content */}
                     <div className="p-6 sm:p-8 md:p-12">
-                      {/* Industry */}
                       <span className="text-[10px] font-medium tracking-[0.2em] text-gray-500">
                         {caseStudy.industry}
                       </span>
-
-                      {/* Title */}
                       <h2 className="mt-2 text-2xl sm:text-3xl font-light mb-4 text-black group-hover:text-blue-600 transition-colors">
                         {caseStudy.title}
                       </h2>
-
-                      {/* Excerpt */}
                       <p className="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed">
                         {caseStudy.excerpt}
                       </p>
+                      <div className="mt-4 sm:mt-6">
+                        <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors">
+                          Ver página web
+                          <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </article>
+            ))}
 
-                      {/* CTA */}
+            {/* Extra cases - shown when showMore is true */}
+            {showMore && extraCaseStudies.map((caseStudy) => (
+              <article
+                key={caseStudy.id}
+                className="group animate-fadeIn"
+                style={{ animation: 'fadeInUp 0.4s ease forwards' }}
+              >
+                <Link href={`${caseStudy.slug}`} className="block" target="_blank" rel="noopener noreferrer">
+                  <div className="grid md:grid-cols-2 gap-0 items-center bg-white border border-gray-200 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
+                    <div className="relative h-[220px] sm:h-[280px] md:h-full min-h-[260px] bg-gray-100">
+                      {caseStudy.image && (
+                        <Image
+                          src={caseStudy.image}
+                          alt={caseStudy.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      )}
+                    </div>
+                    <div className="p-6 sm:p-8 md:p-12">
+                      <span className="text-[10px] font-medium tracking-[0.2em] text-gray-500">
+                        {caseStudy.industry}
+                      </span>
+                      <h2 className="mt-2 text-2xl sm:text-3xl font-light mb-4 text-black group-hover:text-blue-600 transition-colors">
+                        {caseStudy.title}
+                      </h2>
+                      <p className="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed">
+                        {caseStudy.excerpt}
+                      </p>
                       <div className="mt-4 sm:mt-6">
                         <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors">
                           Ver página web
@@ -176,18 +245,34 @@ export default function CaseStudiesPage() {
             ))}
           </div>
 
-          {/* More coming soon */}
+          {/* Load more button */}
           <div className="mt-12 sm:mt-20 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 mb-4">
-              <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button
+              onClick={() => !showMore && setShowMore(true)}
+              className={`
+                inline-flex items-center justify-center w-16 h-16 mb-4
+                transition-all duration-300
+                ${showMore
+                  ? 'bg-gray-100 cursor-default'
+                  : 'bg-gradient-to-br from-gray-900 to-blue-700 hover:scale-110 hover:shadow-xl cursor-pointer'
+                }
+              `}
+              aria-label={showMore ? 'No hay más proyectos' : 'Ver más proyectos'}
+            >
+              <svg
+                className={`w-8 h-8 transition-colors duration-300 ${showMore ? 'text-gray-400' : 'text-white'}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
-            </div>
+            </button>
             <h3 className="text-xl font-light text-gray-600 mb-2">
-              Más casos próximamente
+              {showMore ? 'No hay más proyectos cargados' : 'Más casos próximamente'}
             </h3>
             <p className="text-gray-500 mb-8">
-              Estamos trabajando en nuevos proyectos increíbles
+              {showMore ? 'Seguimos creciendo y sumando nuevos clientes' : 'Estamos trabajando en nuevos proyectos increíbles'}
             </p>
             <Link
               href="/contacto"
