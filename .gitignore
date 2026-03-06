@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Next.js
+.next
+out
+
+# Images duplicated in src/public (originals are in /public)
+src/public/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
