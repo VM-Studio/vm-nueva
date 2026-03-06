@@ -65,12 +65,12 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-white  border-t border-gray-200 ">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 py-16">
+    <footer className="bg-white border-t border-gray-200">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Company Info */}
-          <div className="lg:col-span-1">
+          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center">
             <Image 
               width={60}
@@ -168,9 +168,9 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Footer */}
-        <div className="pt-8 border-t border-gray-200 ">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-xs text-gray-500 ">
+        <div className="pt-8 border-t border-gray-200">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+            <p className="text-xs text-gray-500 text-center sm:text-left">
               © {currentYear} VM Studio. Buenos Aires, Argentina. Todos los derechos reservados.
             </p>
           </div>

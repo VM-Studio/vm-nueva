@@ -100,18 +100,18 @@ export default function CaseStudiesPage() {
           />
         </div>
         
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <span className="text-[11px] font-medium tracking-[0.2em] text-gray-500">
               [ CASOS DE ESTUDIO ]
             </span>
-            <h1 className="mt-4 text-[clamp(3rem,8vw,4rem)] font-light leading-[0.9] tracking-[-0.02em] mb-6 text-black">
+            <h1 className="mt-4 text-[clamp(2.2rem,8vw,4rem)] font-light leading-[0.9] tracking-[-0.02em] mb-6 text-black">
               Proyectos que {' '}
               <span className="font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
                 cambiaron empresas
               </span>
             </h1>
-            <p className="text-xl text-gray-600 font-light">
+            <p className="text-lg sm:text-xl text-gray-600 font-light">
               Conocé cómo ayudamos a empresas locales a crecer.
             </p>
           </div>
@@ -119,18 +119,18 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Studies Grid */}
-      <section className="py-20 bg-white">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-8">
-          <div className="grid gap-12">
+      <section className="py-12 sm:py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 sm:gap-12">
             {caseStudies.map((caseStudy) => (
               <article
                 key={caseStudy.id}
                 className="group"
               >
                 <Link href={`${caseStudy.slug}`} className="block" target="_blank" rel="noopener noreferrer">
-                  <div className="grid md:grid-cols-2 gap-8 items-center bg-white border border-gray-200 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+                  <div className="grid md:grid-cols-2 gap-0 items-center bg-white border border-gray-200 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
                     {/* Image */}
-                    <div className="relative h-[200px] md:h-full xl:h-full lg:h-full bg-gray-100">
+                    <div className="relative h-[220px] sm:h-[280px] md:h-full min-h-[260px] bg-gray-100">
                       {caseStudy.image && (
                         <Image
                           src={caseStudy.image}
@@ -144,24 +144,24 @@ export default function CaseStudiesPage() {
                     </div>
                     
                     {/* Content */}
-                    <div className="p-8 md:p-12">
+                    <div className="p-6 sm:p-8 md:p-12">
                       {/* Industry */}
                       <span className="text-[10px] font-medium tracking-[0.2em] text-gray-500">
                         {caseStudy.industry}
                       </span>
 
                       {/* Title */}
-                      <h2 className="mt-2 text-3xl font-light mb-4 text-black group-hover:text-blue-600 transition-colors">
+                      <h2 className="mt-2 text-2xl sm:text-3xl font-light mb-4 text-black group-hover:text-blue-600 transition-colors">
                         {caseStudy.title}
                       </h2>
 
                       {/* Excerpt */}
-                      <p className="text-gray-600 mb-6 leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed">
                         {caseStudy.excerpt}
                       </p>
 
                       {/* CTA */}
-                      <div className="mt-6">
+                      <div className="mt-4 sm:mt-6">
                         <span className="inline-flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 transition-colors">
                           Ver página web
                           <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -177,7 +177,7 @@ export default function CaseStudiesPage() {
           </div>
 
           {/* More coming soon */}
-          <div className="mt-20 text-center">
+          <div className="mt-12 sm:mt-20 text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 mb-4">
               <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

@@ -73,19 +73,19 @@ const MainContent: React.FC = () => {
           />
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left column - Text content */}
             <div className="max-w-2xl">
               {/* Small caption */}
-              <div className="mb-8">
+              <div className="mb-6 sm:mb-8">
                 <span className="text-[11px] font-medium tracking-[0.2em] text-gray-500">
                   [ GARANTIZADO EN 30 DÍAS ]
                 </span>
               </div>
 
               {/* Main headline */}
-              <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-light leading-[0.9] tracking-[-0.02em] mb-8">
+              <h1 className="text-[clamp(2rem,7vw,4.5rem)] font-light leading-[0.95] tracking-[-0.02em] mb-6 sm:mb-8">
                 <span className=" text-black">Desarrollamos Páginas Web
                 de alto rendimiento para</span> {/*  */}
                 <span className=" font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
@@ -94,7 +94,7 @@ const MainContent: React.FC = () => {
               </h1>
 
               {/* Subheadline */}
-              <p className="text-xl md:text-2xl text-gray-600 mb-12 font-light">
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 sm:mb-12 font-light">
                   Creamos o renovamos tu página web y ponemos a tu empresa enfrente de personas que están activamente buscando tus servicios en Google.            
                   <span className="block mt-4 text-black font-normal">
                   Empezando este mes.               
@@ -106,9 +106,9 @@ const MainContent: React.FC = () => {
                 <Link 
                   href="/contacto"
                   className="
-                    group relative px-8 py-4 
+                    group relative px-6 sm:px-8 py-4 
                     bg-gradient-to-r from-gray-900 to-blue-700
-                    text-white
+                    text-white text-center
                     text-sm font-medium tracking-wider
                     overflow-hidden transition-all duration-300
                     hover:shadow-2xl hover:scale-[1.02]
@@ -122,7 +122,7 @@ const MainContent: React.FC = () => {
                 <Link 
                   href="/casos-de-estudio"
                   className="
-                    px-8 py-4 
+                    px-6 sm:px-8 py-4 text-center
                     border border-gray-400
                     text-black
                     text-sm font-medium tracking-wider
@@ -139,7 +139,7 @@ const MainContent: React.FC = () => {
             </div>
 
             {/* Right column - Video space */}
-            <div className="relative lg:block ">
+            <div className="relative mt-8 lg:mt-0">
               <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden shadow-2xl border border-gray-300">
                 <video
                   className="w-full h-full object-cover"
@@ -166,20 +166,20 @@ const MainContent: React.FC = () => {
       </section>
 
       {/* Services Section */}
-      <section id="capabilities" className="py-32 bg-gray-50 relative">
+      <section id="capabilities" className="py-16 sm:py-24 lg:py-32 bg-gray-50 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
         
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
-          <div className="mb-20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="mb-12 sm:mb-20">
             <span className="text-[11px] font-medium tracking-[0.2em] text-gray-500">
               [ SERVICIOS ]
             </span>
-            <h2 className="mt-4 text-5xl md:text-6xl font-light tracking-tight text-black">
+            <h2 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-light tracking-tight text-black">
               Cómo te ayudamos a<span className="font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent"> crecer</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <div
                 key={index}
@@ -223,20 +223,20 @@ const MainContent: React.FC = () => {
       </section>
 
       {/* Process Section */}
-      <section id="process" className="py-32 bg-white relative">
+      <section id="process" className="py-16 sm:py-24 lg:py-32 bg-white relative">
         <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50" />
         
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-8 relative z-10">
-          <div className="mb-20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="mb-12 sm:mb-20">
             <span className="text-[11px] font-medium tracking-[0.2em] text-gray-500">
               [ METODOLOGÍA ]
             </span>
-            <h2 className="mt-4 text-5xl md:text-6xl font-light tracking-tight text-black">
+            <h2 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-light tracking-tight text-black">
               Cómo <span className="font-medium">trabajamos</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
             {processSteps.map((step, index) => (
               <div
                 key={index}
@@ -261,18 +261,18 @@ const MainContent: React.FC = () => {
       </section>
 
       {/* Comparison Section */}
-      <section id="enterprise" className="py-24 bg-gray-50">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="mb-16 text-center">
+      <section id="enterprise" className="py-16 sm:py-24 bg-gray-50">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 sm:mb-16 text-center">
             <span className="text-[11px] font-medium tracking-[0.2em] text-gray-500">
               [ DIFERENCIAL ]
             </span>
-            <h2 className="mt-4 text-4xl md:text-5xl font-light tracking-tight text-black">
+            <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-black">
               Por qué <span className="font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">nosotros</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
             <div className="p-8 bg-gray-100 rounded-lg">
               <h3 className="text-xl font-light mb-6 text-gray-500">Otros</h3>
               <ul className="space-y-4">
@@ -318,13 +318,13 @@ const MainContent: React.FC = () => {
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-32 bg-white">
-        <div className="max-w-[900px] mx-auto px-6 lg:px-8">
-          <div className="mb-20">
+      <section id="faq" className="py-16 sm:py-24 lg:py-32 bg-white">
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 sm:mb-20">
             <span className="text-[11px] font-medium tracking-[0.2em] text-gray-500">
               [ PREGUNTAS FRECUENTES ]
             </span>
-            <h2 className="mt-4 text-5xl md:text-6xl font-light tracking-tight text-black">
+            <h2 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-light tracking-tight text-black">
               Todo lo que necesitás <span className="font-medium">saber</span>
             </h2>
           </div>
@@ -373,8 +373,8 @@ const MainContent: React.FC = () => {
                 className="border-b border-gray-200 group"
               >
                 <details className="group">
-                  <summary className="flex justify-between items-center py-6 cursor-pointer list-none hover:text-blue-600 transition-colors">
-                    <span className="text-lg font-light pr-8 text-black">{faq.q}</span>
+                  <summary className="flex justify-between items-center py-5 sm:py-6 cursor-pointer list-none hover:text-blue-600 transition-colors">
+                    <span className="text-base sm:text-lg font-light pr-6 sm:pr-8 text-black">{faq.q}</span>
                     <span className="text-2xl font-light text-gray-400 group-open:rotate-45 transition-transform duration-200">
                       +
                     </span>
@@ -392,25 +392,25 @@ const MainContent: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section id="contact" className="relative py-32 bg-gray-50">
+      <section id="contact" className="relative py-16 sm:py-24 lg:py-32 bg-gray-50">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/20 to-transparent" />
         </div>
         
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-8">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <span className="text-[11px] font-medium tracking-[0.2em] text-gray-500">
               [ EMPEZÁ HOY ]
             </span>
             
-            <h2 className="mt-8 text-[clamp(2.5rem,6vw,4rem)] font-light leading-[0.9] mb-8 text-black">
+            <h2 className="mt-8 text-[clamp(2rem,6vw,4rem)] font-light leading-[0.9] mb-8 text-black">
               <span className="block">Hagamos crecer a</span>
               <span className="block font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
                 tu empresa
               </span>
             </h2>
             
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light mb-12">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto font-light mb-10 sm:mb-12">
               Programá una llamada de 30 minutos. Sin compromiso.
               <span className="block mt-2">Te mostramos exactamente cómo podemos hacer crecer a tu empresa.</span>
             </p>
@@ -418,7 +418,7 @@ const MainContent: React.FC = () => {
             <Link
               href="/contacto"
               className="
-                inline-block px-12 py-4
+                inline-block px-8 sm:px-12 py-4
                 bg-gradient-to-r from-gray-900 to-blue-700
                 text-white
                 text-sm font-medium tracking-wider
