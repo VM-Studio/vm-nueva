@@ -8,7 +8,6 @@ import Footer from './Footer';
 const Software = "/web.gif";
 const Google = "/google.gif";
 const Automatic = "/ia.gif";
-const Portada = "/portrait.png";
 const Logo = "/log.png";
 
 const MainContent: React.FC = () => {
@@ -148,9 +147,8 @@ const MainContent: React.FC = () => {
                   loop
                   playsInline
                   controls
-                  poster={Portada}
                 >
-                  <source src="https://res.cloudinary.com/ddmezsxfc/video/upload/v1772836090/valentinavm_f27w1t.mov" type="video/mp4" />
+                  <source src="https://res.cloudinary.com/ddmezsxfc/video/upload/v1772839995/valentinavm2_iscx9n.mov" type="video/mp4" />
                 </video>
               </div>
             </div>
