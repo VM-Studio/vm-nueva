@@ -143,7 +143,8 @@ const MainContent: React.FC = () => {
               <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden shadow-2xl border border-gray-300">
                 <video
                   className="w-full h-full object-cover"
-                  
+                  autoPlay
+                  muted
                   loop
                   playsInline
                   controls
