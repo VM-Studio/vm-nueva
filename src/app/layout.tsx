@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
+import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import MetaPixel from '../components/MetaPixel';
@@ -105,6 +106,17 @@ export default function RootLayout({
             {children}
           </main>
         </ThemeProvider>
+
+        {/* WhatsApp floating button */}
+        <a
+          href="https://wa.me/541124508191"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 z-50 transition-transform hover:scale-110"
+          aria-label="Contactar por WhatsApp"
+        >
+          <Image src="/whatsapp.png" alt="WhatsApp" width={56} height={56} />
+        </a>
         
         {/* Structured Data */}
         <Script

@@ -89,7 +89,7 @@ export default function CaseStudiesPage() {
   const extraCaseStudies: CaseStudy[] = [
     {
       id: '6',
-      title: 'Kudu: Electrodomésticos de cocina',
+      title: 'Kudu',
       excerpt: 'Desarrollamos una página web con catálogo interactivo completo para el representante oficial de KUDU en Buenos Aires. El sitio presenta sus líneas de purificadores, campanas, anafes, hornos y extractores con fichas técnicas detalladas, optimización SEO y formulario de contacto directo.',
       client: 'Kudu Buenos Aires',
       industry: 'ELECTRODOMÉSTICOS DE COCINA',
@@ -100,25 +100,36 @@ export default function CaseStudiesPage() {
     },
     {
       id: '7',
-      title: 'Proyecto 7 — Próximamente',
-      excerpt: 'Descripción del proyecto 7. Reemplazá este texto con la información real del cliente.',
-      client: 'Cliente 7',
-      industry: 'INDUSTRIA',
-      services: ['Desarrollo Web'],
-      results: 'Resultados del proyecto',
-      slug: '#',
-      image: Yesica,
+      title: 'Dr Brass Saxofones',
+      excerpt: 'Desarrollamos la página web para DR BRASS, la tienda líder en Rosario especializada en saxofones e instrumentos de viento. El sitio incluye catálogo completo de productos nuevos y usados, secciones de servicios (luthería, canjes, consignaciones y asesoramiento), optimización SEO local y formulario de contacto.',
+      client: 'DR BRASS Rosario',
+      industry: 'INSTRUMENTOS DE VIENTO',
+      services: ['Desarrollo Web', 'Catálogo de Productos', 'SEO Local', 'Formularios'],
+      results: '+150% visibilidad online, presencia en búsquedas locales de Rosario',
+      slug: 'https://drbrassrosario.com/',
+      image: '/saxofon.mp4',
     },
     {
       id: '8',
-      title: 'Proyecto 8 — Próximamente',
-      excerpt: 'Descripción del proyecto 8. Reemplazá este texto con la información real del cliente.',
-      client: 'Cliente 8',
-      industry: 'INDUSTRIA',
-      services: ['Desarrollo Web'],
-      results: 'Resultados del proyecto',
-      slug: '#',
-      image: AJR,
+      title: 'Fili & Asociados',
+      excerpt: 'Desarrollamos la página web para el estudio jurídico del Dr. Augusto Filí, con más de 20 años de trayectoria en Córdoba. El sitio presenta sus áreas de práctica (derecho laboral, sucesiones, indemnizaciones y familia), artículos de prensa destacados, testimonios de clientes y un sistema de consulta directa por WhatsApp.',
+      client: 'Filí & Asociados',
+      industry: 'ESTUDIO DE ABOGADOS',
+      services: ['Desarrollo Web', 'SEO Local', 'Formularios', 'Integración WhatsApp'],
+      results: '+180% en consultas digitales, posicionamiento en búsquedas legales de Córdoba',
+      slug: 'https://filiyasociados.com/',
+      image: '/abogados.mp4',
+    },
+    {
+      id: '9',
+      title: 'Ali Broker',
+      excerpt: 'Desarrollamos una página web de alto impacto para Ali Broker, especializados en propiedades exclusivas. El sitio presenta una residencia única en Altos de Campo Grande: 510m² sobre 1600m² de terreno con sistema Béton Brut, galería de imágenes profesional, ficha técnica detallada y formulario de asesoría personalizada.',
+      client: 'Ali Broker',
+      industry: 'REAL ESTATE',
+      services: ['Desarrollo Web', 'Galería Multimedia', 'Formularios', 'SEO'],
+      results: '+200% en consultas de propiedades, captación de compradores calificados',
+      slug: 'https://alibroker-propiedades.com/',
+      image: '/propiedades.mp4',
     },
   ];
 
@@ -163,8 +174,8 @@ export default function CaseStudiesPage() {
             {caseStudies.map((caseStudy) => (
               <article key={caseStudy.id} className="group">
                 <Link href={`${caseStudy.slug}`} className="block" target="_blank" rel="noopener noreferrer">
-                  <div className="grid md:grid-cols-2 gap-0 items-center bg-white border border-gray-200 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
-                    <div className="relative h-[220px] sm:h-[280px] md:h-full min-h-[260px] bg-gray-100">
+                  <div className="grid md:grid-cols-2 gap-0 bg-white border border-gray-200 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
+                    <div className="relative h-[220px] sm:h-[260px] md:h-[360px] bg-gray-100">
                       {caseStudy.image && (
                         <Image
                           src={caseStudy.image}
@@ -176,7 +187,7 @@ export default function CaseStudiesPage() {
                         />
                       )}
                     </div>
-                    <div className="p-6 sm:p-8 md:p-12">
+                    <div className="flex flex-col justify-center p-5 sm:p-8 md:p-12 md:h-[360px] overflow-hidden">
                       <span className="text-[10px] font-medium tracking-[0.2em] text-gray-500">
                         {caseStudy.industry}
                       </span>
@@ -208,17 +219,19 @@ export default function CaseStudiesPage() {
                 style={{ animation: 'fadeInUp 0.4s ease forwards' }}
               >
                 <Link href={`${caseStudy.slug}`} className="block" target="_blank" rel="noopener noreferrer">
-                  <div className="grid md:grid-cols-2 gap-0 items-center bg-white border border-gray-200 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
-                    <div className="relative h-[220px] sm:h-[280px] md:h-full min-h-[260px] bg-gray-100">
+                  <div className="grid md:grid-cols-2 gap-0 bg-white border border-gray-200 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
+                    <div className="relative h-[220px] sm:h-[260px] md:h-[360px] bg-gray-100">
                       {caseStudy.image && caseStudy.image.endsWith('.mp4') ? (
                         <video
-                          src={caseStudy.image}
                           autoPlay
                           muted
                           loop
                           playsInline
+                          preload="auto"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
+                        >
+                          <source src={caseStudy.image} type="video/mp4" />
+                        </video>
                       ) : caseStudy.image && (
                         <Image
                           src={caseStudy.image}
@@ -229,7 +242,7 @@ export default function CaseStudiesPage() {
                         />
                       )}
                     </div>
-                    <div className="p-6 sm:p-8 md:p-12">
+                    <div className="flex flex-col justify-center p-5 sm:p-8 md:p-12 md:h-[360px] overflow-hidden">
                       <span className="text-[10px] font-medium tracking-[0.2em] text-gray-500">
                         {caseStudy.industry}
                       </span>
@@ -278,13 +291,15 @@ export default function CaseStudiesPage() {
               </svg>
             </button>
             <h3 className="text-xl font-light text-gray-600 mb-2">
-              {showMore ? 'No hay más proyectos cargados' : 'Más casos próximamente'}
+              {showMore ? 'Nuevos proyectos en camino' : 'Más casos próximamente'}
             </h3>
             <p className="text-gray-500 mb-8">
-              {showMore ? 'Seguimos creciendo y sumando nuevos clientes' : 'Estamos trabajando en nuevos proyectos increíbles'}
+              {showMore ? 'Seguimos creciendo y sumando nuevos clientes a nuestra cartera.' : 'Estamos trabajando en nuevos proyectos increíbles'}
             </p>
-            <Link
-              href="/contacto"
+            <a
+              href="https://wa.me/541124508191"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 inline-block px-8 py-4
                 bg-gradient-to-r from-gray-900 to-blue-700
@@ -295,8 +310,8 @@ export default function CaseStudiesPage() {
                 active:scale-[0.98]
               "
             >
-              EMPEZÁ TU PROYECTO
-            </Link>
+              PEDIR MAQUETA GRATIS
+            </a>
           </div>
         </div>
       </section>

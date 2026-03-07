@@ -8,21 +8,9 @@ const Footer: React.FC = () => {
   const navigation = {
     principal: [
       { name: 'Inicio', href: '/' },
-      { name: 'Blog', href: '/blog' },
-      { name: 'E-ticketpro', href: 'https://e-ticketpro.com/organizadores', external: true },
-      { name: 'Contacto', href: '/contacto' },
-    ],
-
-    recursos: [
       { name: 'Casos de Estudio', href: '/casos-de-estudio' },
-      { name: 'Newsletter', href: '/newsletter' },
       { name: 'FAQ', href: '/#faq' },
-      { name: 'Programar Llamada', href: '/contacto' }
-    ],
-    legal: [
-      { name: 'Privacidad', href: '/' },
-      { name: 'Términos', href: '/' },
-      { name: 'Cookies', href: '/' }
+      { name: 'Pedir Maqueta Gratis', href: 'https://wa.me/541124508191', external: true },
     ],
     social: [
       { 
@@ -67,19 +55,15 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-gray-200">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          {/* Company Info */}
-          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="flex items-center">
-            <Image 
-              width={60}
-              height={60}
-              src="/log.png"
-              alt="Logo"
-            />
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+
+          {/* Logo + descripción */}
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1 flex flex-col gap-4">
+            <Link href="/">
+              <Image width={60} height={60} src="/log.png" alt="Logo" />
             </Link>
-            <p className="text-sm text-gray-600  mb-4">
+            <p className="text-sm text-gray-600">
               Desarrollo de Apps y Páginas Web optimizadas para empresas locales.
             </p>
             <div className="flex space-x-3">
@@ -89,7 +73,7 @@ const Footer: React.FC = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400  hover:text-blue-600  transition-colors"
+                  className="text-gray-400 hover:text-blue-600 transition-colors"
                   aria-label={item.name}
                 >
                   {item.icon}
@@ -98,9 +82,9 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* Navegación */}
           <div>
-            <h3 className="text-xs font-semibold tracking-wider mb-4 text-gray-900 ">
+            <h3 className="text-xs font-semibold tracking-wider mb-4 text-gray-900">
               NAVEGACIÓN
             </h3>
             <ul className="space-y-3">
@@ -111,14 +95,14 @@ const Footer: React.FC = () => {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-gray-600 hover:text-blue-600  transition-colors hover:translate-x-1 inline-block"
+                      className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block"
                     >
-                      {item.name} ↗
+                      {item.name}
                     </a>
                   ) : (
                     <Link
                       href={item.href}
-                      className="text-sm text-gray-600 hover:text-blue-600  transition-colors hover:translate-x-1 inline-block"
+                      className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block"
                     >
                       {item.name}
                     </Link>
@@ -128,53 +112,78 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Contacto */}
           <div>
-            <h3 className="text-xs font-semibold tracking-wider mb-4 text-gray-900 ">
-              RECURSOS
+            <h3 className="text-xs font-semibold tracking-wider mb-4 text-gray-900">
+              CONTACTO
             </h3>
             <ul className="space-y-3">
-              {navigation.recursos.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-gray-600  hover:text-blue-600  transition-colors hover:translate-x-1 inline-block"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <a
+                  href="https://wa.me/541124508191"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block"
+                >
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/vmstudio.ag"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/vm-studio-ag/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block"
+                >
+                  LinkedIn
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h3 className="text-xs font-semibold tracking-wider mb-4 text-gray-900 ">
+            <h3 className="text-xs font-semibold tracking-wider mb-4 text-gray-900">
               LEGAL
             </h3>
             <ul className="space-y-3">
-              {navigation.legal.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-gray-600  hover:text-blue-600  transition-colors hover:translate-x-1 inline-block"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="/" className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block">
+                  Privacidad
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block">
+                  Términos
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block">
+                  Cookies
+                </Link>
+              </li>
             </ul>
           </div>
+
         </div>
 
-        {/* Bottom Footer */}
+        {/* Bottom */}
         <div className="pt-8 border-t border-gray-200">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
-            <p className="text-xs text-gray-500 text-center sm:text-left">
-              © {currentYear} VM Studio. Buenos Aires, Argentina. Todos los derechos reservados.
-            </p>
-          </div>
+          <p className="text-xs text-gray-500 text-center sm:text-left">
+            © {currentYear} VM Studio. Buenos Aires, Argentina. Todos los derechos reservados.
+          </p>
         </div>
+
       </div>
     </footer>
   );

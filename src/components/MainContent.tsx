@@ -39,7 +39,7 @@ const MainContent: React.FC = () => {
     {
       number: "01",
       title: "Planeamos tu éxito",
-      description: "Estudiamos tu mercado, empresa y competencia. Planificamos una solución personalizada para vos.",
+      description: "Estudiamos tu mercado, empresa y competencia. Planificamos una solución personalizada para vos y te armamos una maqueta web gratis para que tengas un parámetro real de cómo se vería tu web nueva o remodelada.",
       duration: "48 HORAS"
     },
     {
@@ -51,7 +51,7 @@ const MainContent: React.FC = () => {
     {
       number: "03",
       title: "Mantenimiento mensual",
-      description: "Realizamos cambios, modificaciones que necesites y mantenemos todo actualizado a las últimas tecnologías.",
+      description: "Realizamos cambios, modificaciones que necesites y mantenemos todo actualizado a las últimas tecnologías. (Opcional)",
       duration: "MENSUAL"
     }
   ];
@@ -103,8 +103,10 @@ const MainContent: React.FC = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link 
-                  href="/contacto"
+                <a 
+                  href="https://wa.me/541124508191"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="
                     group relative px-6 sm:px-8 py-4 
                     bg-gradient-to-r from-gray-900 to-blue-700
@@ -115,9 +117,9 @@ const MainContent: React.FC = () => {
                     active:scale-[0.98]
                   "
                 >
-                  <span className="relative z-10">PROGRAMAR LLAMADA</span>
+                  <span className="relative z-10">PEDIR MAQUETA GRATIS</span>
                   <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                </Link>
+                </a>
                 
                 <Link 
                   href="/casos-de-estudio"
@@ -143,9 +145,6 @@ const MainContent: React.FC = () => {
               <div className="relative aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg overflow-hidden shadow-2xl border border-gray-300">
                 <video
                   className="w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
                   playsInline
                   controls
                 >
@@ -236,21 +235,21 @@ const MainContent: React.FC = () => {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 items-start">
             {processSteps.map((step, index) => (
               <div
                 key={index}
-                className="relative group"
+                className="relative group flex flex-col h-full"
               >
-                <div className="relative">
+                <div className="relative flex flex-col flex-1">
                   <span className="text-5xl font-light text-blue-300 group-hover:text-blue-600 transition-colors duration-300">
                     {step.number}
                   </span>
                   <h3 className="mt-4 text-xl font-medium mb-2 text-black">{step.title}</h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-gray-600 mb-4 flex-1">
                     {step.description}
                   </p>
-                  <span className="text-xs font-medium text-blue-600 tracking-wider">
+                  <span className="text-xs font-medium text-blue-600 tracking-wider mt-auto">
                     {step.duration}
                   </span>
                 </div>
@@ -290,7 +289,7 @@ const MainContent: React.FC = () => {
               </ul>
             </div>
 
-            <div className="px-8 py-4 bg-gradient-to-br bg-gray-900 border-blue-500 border  text-white rounded-lg">
+            <div className="px-5 sm:px-8 py-4 bg-gradient-to-br bg-gray-900 border-blue-500 border text-white rounded-lg">
                         <Link href="/" className="flex items-center">
               <Image 
                 width={60}
@@ -301,7 +300,7 @@ const MainContent: React.FC = () => {
             </Link>
               <ul className="space-y-4 pb-4">
                 {[
-                  "Si no funciona, te devolvemos tu dinero",
+                  "Si no funciona, te devolvemos tu dinero (válido para servicios de posicionamiento en Google)",
                   "Llamadas semanales y reportes en tiempo real",
                   "Apps, páginas web, posicionamiento en Google, lo cubrimos todo",
                   "Flexibles, ningún contrato obligatorio a largo plazo"
@@ -337,7 +336,7 @@ const MainContent: React.FC = () => {
               },
               {
                 q: "¿Qué van a hacer exactamente por mi negocio?",
-                a: "Vamos a desarrollar una página web personalizada o mejorar tu página actual y la vamos a posicionar en los primeros puestos de Google en menos de 90 dias."
+                a: "Vamos a desarrollar una página web personalizada o mejorar tu página actual y, si elegís sumar el servicio de Posicionamiento en Google, la vamos a posicionar en los primeros puestos de Google."
               },
               {
                 q: "¿Cuánto tiempo va a tardar esto?",
@@ -365,7 +364,7 @@ const MainContent: React.FC = () => {
               },
               {
                 q: "¿Puedo pensarlo y después contactarme?",
-                a: "Mejor llenar el formulario así sabemos que estás interesado y en el mejor de los casos te enviamos algo de nuestro mejor material mostrando cómo es trabajar con nosotros."
+                a: "Mejor escribinos por WhatsApp, así ya tenés nuestro contacto guardado para cuando quieras dar el paso. Te vamos a enviar material mostrando cómo es trabajar con nosotros."
               }
             ].map((faq, i) => (
               <div
@@ -415,8 +414,10 @@ const MainContent: React.FC = () => {
               <span className="block mt-2">Te mostramos exactamente cómo podemos hacer crecer a tu empresa.</span>
             </p>
             
-            <Link
-              href="/contacto"
+            <a
+              href="https://wa.me/541124508191"
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 inline-block px-8 sm:px-12 py-4
                 bg-gradient-to-r from-gray-900 to-blue-700
@@ -427,8 +428,8 @@ const MainContent: React.FC = () => {
                 active:scale-[0.98]
               "
             >
-              PROGRAMAR LLAMADA
-            </Link>
+              PEDIR MAQUETA GRATIS
+            </a>
           </div>
         </div>
       </section>
