@@ -89,14 +89,14 @@ export default function CaseStudiesPage() {
   const extraCaseStudies: CaseStudy[] = [
     {
       id: '6',
-      title: 'Proyecto 6 — Próximamente',
-      excerpt: 'Descripción del proyecto 6. Reemplazá este texto con la información real del cliente.',
-      client: 'Cliente 6',
-      industry: 'INDUSTRIA',
-      services: ['Desarrollo Web'],
-      results: 'Resultados del proyecto',
-      slug: '#',
-      image: ETICKETPRO,
+      title: 'Kudu: Electrodomésticos de cocina',
+      excerpt: 'Desarrollamos una página web con catálogo interactivo completo para el representante oficial de KUDU en Buenos Aires. El sitio presenta sus líneas de purificadores, campanas, anafes, hornos y extractores con fichas técnicas detalladas, optimización SEO y formulario de contacto directo.',
+      client: 'Kudu Buenos Aires',
+      industry: 'ELECTRODOMÉSTICOS DE COCINA',
+      services: ['Desarrollo Web', 'Catálogo Digital', 'SEO Local', 'Formularios'],
+      results: '+200% en consultas de productos, presencia orgánica en Google',
+      slug: 'https://kuduobras.com/',
+      image: '/kudu.mp4',
     },
     {
       id: '7',
@@ -210,7 +210,16 @@ export default function CaseStudiesPage() {
                 <Link href={`${caseStudy.slug}`} className="block" target="_blank" rel="noopener noreferrer">
                   <div className="grid md:grid-cols-2 gap-0 items-center bg-white border border-gray-200 overflow-hidden hover:border-blue-500 hover:shadow-xl hover:scale-[1.01] transition-all duration-300">
                     <div className="relative h-[220px] sm:h-[280px] md:h-full min-h-[260px] bg-gray-100">
-                      {caseStudy.image && (
+                      {caseStudy.image && caseStudy.image.endsWith('.mp4') ? (
+                        <video
+                          src={caseStudy.image}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : caseStudy.image && (
                         <Image
                           src={caseStudy.image}
                           alt={caseStudy.title}
