@@ -80,6 +80,14 @@ const Footer: React.FC = () => {
                 </a>
               ))}
             </div>
+            <a
+              href="https://mail.google.com/mail/?view=cm&to=vmstudio.online@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-gray-500 hover:text-blue-600 transition-colors mt-1 inline-block"
+            >
+              vmstudio.online@gmail.com
+            </a>
           </div>
 
           {/* Navegación */}
@@ -146,6 +154,16 @@ const Footer: React.FC = () => {
                   className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block"
                 >
                   LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&to=vmstudio.online@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block"
+                >
+                  Gmail
                 </a>
               </li>
             </ul>

@@ -147,6 +147,7 @@ const MainContent: React.FC = () => {
                   className="w-full h-full object-cover"
                   playsInline
                   controls
+                  poster="https://res.cloudinary.com/ddmezsxfc/video/upload/v1772839995/valentinavm2_iscx9n.jpg"
                 >
                   <source src="https://res.cloudinary.com/ddmezsxfc/video/upload/v1772839995/valentinavm2_iscx9n.mov" type="video/mp4" />
                 </video>
@@ -187,10 +188,9 @@ const MainContent: React.FC = () => {
                   bg-white
                   border border-gray-200
                   hover:border-blue-500
-                  transition-all duration-300
+                  transition-colors duration-300
                   overflow-hidden
                   hover:shadow-xl
-                  hover:scale-[1.02]
                 "
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-50/30 to-blue-100/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -202,6 +202,7 @@ const MainContent: React.FC = () => {
                       src={service.imageSrc}
                       width={150}
                       height={150}
+                      loading="lazy"
                       className='h-full w-full object-contain'
                       alt={service.title}
                     />
