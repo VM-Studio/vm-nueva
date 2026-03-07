@@ -85,7 +85,7 @@ const MainContent: React.FC = () => {
               </div>
 
               {/* Main headline */}
-              <h1 className="text-[clamp(2rem,7vw,4.5rem)] font-light leading-[0.95] tracking-[-0.02em] mb-6 sm:mb-8">
+              <h1 className="text-[2.4rem] sm:text-[clamp(2rem,7vw,4.5rem)] font-light leading-[0.95] tracking-[-0.02em] mb-6 sm:mb-8">
                 <span className=" text-black">Desarrollamos Páginas Web
                 de alto rendimiento para</span> {/*  */}
                 <span className=" font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
@@ -94,7 +94,7 @@ const MainContent: React.FC = () => {
               </h1>
 
               {/* Subheadline */}
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 sm:mb-12 font-light">
+              <p className="text-base sm:text-xl md:text-2xl text-gray-600 mb-8 sm:mb-12 font-light">
                   Creamos o renovamos tu página web y ponemos a tu empresa enfrente de personas que están activamente buscando tus servicios en Google.            
                   <span className="block mt-4 text-black font-normal">
                   Empezando este mes.               
@@ -402,7 +402,7 @@ const MainContent: React.FC = () => {
               [ EMPEZÁ HOY ]
             </span>
             
-            <h2 className="mt-8 text-[clamp(2rem,6vw,4rem)] font-light leading-[0.9] mb-8 text-black">
+            <h2 className="mt-8 text-[clamp(2rem,6vw,4rem)] font-light leading-[1.1] mb-8 text-black">
               <span className="block">Hagamos crecer a</span>
               <span className="block font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
                 tu empresa
