@@ -23,11 +23,11 @@ const META_PIXEL_ID = 'YOUR_PIXEL_ID_HERE';
 
 export const metadata: Metadata = {
   title: {
-    default: 'El mejor desarrollo de páginas Web en Pilar - VM Studio',
+    default: 'El mejor desarrollo de páginas Web para empresas - VM Studio',
     template: '%s | VM Studio',
   },
-  description: 'Página Web y publicidad de Google optimizada para generar clientes nuevos en 30 días - Garantizado. Ponemos a tu empresa en frente de personas buscando tus servicios.',
-  keywords: 'google ads, meta ads, marketing digital, diseño web, publicidad online, generación de leads, argentina, pilar, buenos aires',
+  description: 'Diseño y desarrollo de páginas web profesionales para empresas en Argentina. Generamos clientes nuevos con páginas web de alto rendimiento y posicionamiento en Google. Garantizado en 30 días.',
+  keywords: 'desarrollo de páginas web para empresas, diseño web profesional, páginas web argentina, google ads, marketing digital, posicionamiento google, publicidad online, pilar, buenos aires',
   openGraph: {
     title: 'VM STUDIO - Clientes Nuevos en 30 Días Garantizado',
     description: 'Página Web y publicidad de Google optimizada para generar clientes nuevos. Empezando este mes.',
