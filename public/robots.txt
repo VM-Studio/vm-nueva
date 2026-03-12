@@ -8,4 +8,4 @@ Disallow: /404
 Disallow: /500
 
 # Sitemap
-Sitemap: https://vmstudioweb.com/sitemap.xml
+Sitemap: https://vmstudioweb.online/sitemap.xml

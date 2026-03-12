@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'VM STUDIO - Clientes Nuevos en 30 Días Garantizado',
     description: 'Página Web y publicidad de Google optimizada para generar clientes nuevos. Empezando este mes.',
-    url: 'https://vmstudioweb.com',
+    url: 'https://vmstudioweb.online',
     siteName: 'VM Studio',
     images: [
       {
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://vmstudioweb.com',
+    canonical: 'https://vmstudioweb.online',
   },
 };
 
@@ -119,12 +119,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "@graph": [
                 {
                   "@type": "Organization",
-                  "@id": "https://vmstudioweb.com/#organization",
+                  "@id": "https://vmstudioweb.online/#organization",
                   "name": "VM Studio",
-                  "url": "https://vmstudioweb.com",
+                  "url": "https://vmstudioweb.online",
                   "logo": {
                     "@type": "ImageObject",
-                    "url": "https://vmstudioweb.com/log.png",
+                    "url": "https://vmstudioweb.online/log.png",
                     "width": 200,
                     "height": 60
                   },
@@ -141,10 +141,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 },
                 {
                   "@type": "LocalBusiness",
-                  "@id": "https://vmstudioweb.com/#localbusiness",
+                  "@id": "https://vmstudioweb.online/#localbusiness",
                   "name": "VM Studio",
                   "description": "Desarrollo de páginas web y marketing digital para empresas en Pilar y Buenos Aires. Generamos clientes nuevos garantizado en 30 días.",
-                  "url": "https://vmstudioweb.com",
+                  "url": "https://vmstudioweb.online",
                   "telephone": "+54-11-2450-8191",
                   "email": "vmstudio.online@gmail.com",
                   "address": {
@@ -248,7 +248,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               "@type": "MarketingAgency",
               "name": "VM Studio",
               "description": "Agencia de marketing digital especializada en generación de leads con garantía de resultados",
-              "url": "https://www.vmstudioweb.com/",
+              "url": "https://www.vmstudioweb.online/",
               "telephone": "+54 11 1234-5678",
               "address": {
                 "@type": "PostalAddress",
