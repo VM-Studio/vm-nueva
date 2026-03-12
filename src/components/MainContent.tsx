@@ -117,7 +117,7 @@ const MainContent: React.FC = () => {
                     active:scale-[0.98]
                   "
                 >
-                  <span className="relative z-10">PEDIR MAQUETA GRATIS</span>
+                  <span className="relative z-10">PEDIR MAQUETA WEB GRATIS</span>
                   <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                 </a>
                 
@@ -429,7 +429,7 @@ const MainContent: React.FC = () => {
                 active:scale-[0.98]
               "
             >
-              PEDIR MAQUETA GRATIS
+              PEDIR MAQUETA WEB GRATIS
             </a>
           </div>
         </div>

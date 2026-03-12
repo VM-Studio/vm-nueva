@@ -24,6 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
   const navItems = [
     { href: '/', label: 'INICIO' },   
     { href: '/casos-de-estudio', label: 'CASOS DE ESTUDIO' },
+    { href: '/contacto', label: 'CONTACTO' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
