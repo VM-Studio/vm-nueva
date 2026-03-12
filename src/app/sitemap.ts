@@ -23,13 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/landing/paginas-web`,
+      url: `${baseUrl}/paginas-web`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/landing/marketing-digital`,
+      url: `${baseUrl}/marketing-digital`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
