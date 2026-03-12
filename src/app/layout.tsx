@@ -22,20 +22,23 @@ const META_PIXEL_ID = 'YOUR_PIXEL_ID_HERE';
 // ============================================
 
 export const metadata: Metadata = {
-  title: 'El mejor desarrollo de páginas Web en Pilar - Servicios Web Diseño ',
+  title: {
+    default: 'El mejor desarrollo de páginas Web en Pilar - VM Studio',
+    template: '%s | VM Studio',
+  },
   description: 'Página Web y publicidad de Google optimizada para generar clientes nuevos en 30 días - Garantizado. Ponemos a tu empresa en frente de personas buscando tus servicios.',
-  keywords: 'google ads, meta ads, marketing digital, diseño web, publicidad online, generación de leads, argentina',
+  keywords: 'google ads, meta ads, marketing digital, diseño web, publicidad online, generación de leads, argentina, pilar, buenos aires',
   openGraph: {
     title: 'VM STUDIO - Clientes Nuevos en 30 Días Garantizado',
     description: 'Página Web y publicidad de Google optimizada para generar clientes nuevos. Empezando este mes.',
-    url: 'vmstudioweb.com',
-    siteName: 'VM STUDIO',
+    url: 'https://vmstudioweb.com',
+    siteName: 'VM Studio',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'VM Studio - Marketing Digital',
+        alt: 'VM Studio - Desarrollo Web y Marketing Digital en Pilar',
       },
     ],
     locale: 'es_AR',
@@ -59,7 +62,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'vmstudioweb.com',
+    canonical: 'https://vmstudioweb.com',
   },
 };
 
@@ -106,6 +109,101 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             } catch (e) {}
           `}
         </Script>
+
+        {/* Schema markup: Organization + LocalBusiness */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://vmstudioweb.com/#organization",
+                  "name": "VM Studio",
+                  "url": "https://vmstudioweb.com",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://vmstudioweb.com/log.png",
+                    "width": 200,
+                    "height": 60
+                  },
+                  "sameAs": [
+                    "https://www.instagram.com/vmstudio.online",
+                    "https://www.linkedin.com/company/vm-studio"
+                  ],
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+54-11-2450-8191",
+                    "contactType": "customer service",
+                    "availableLanguage": "Spanish"
+                  }
+                },
+                {
+                  "@type": "LocalBusiness",
+                  "@id": "https://vmstudioweb.com/#localbusiness",
+                  "name": "VM Studio",
+                  "description": "Desarrollo de páginas web y marketing digital para empresas en Pilar y Buenos Aires. Generamos clientes nuevos garantizado en 30 días.",
+                  "url": "https://vmstudioweb.com",
+                  "telephone": "+54-11-2450-8191",
+                  "email": "vmstudio.online@gmail.com",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Pilar",
+                    "addressRegion": "Buenos Aires",
+                    "addressCountry": "AR"
+                  },
+                  "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": -34.4587,
+                    "longitude": -58.9142
+                  },
+                  "priceRange": "$$",
+                  "openingHours": "Mo-Fr 09:00-18:00",
+                  "serviceArea": {
+                    "@type": "GeoCircle",
+                    "geoMidpoint": {
+                      "@type": "GeoCoordinates",
+                      "latitude": -34.4587,
+                      "longitude": -58.9142
+                    },
+                    "geoRadius": "50000"
+                  },
+                  "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Servicios de VM Studio",
+                    "itemListElement": [
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Diseño y Desarrollo Web",
+                          "description": "Creamos páginas web optimizadas para convertir visitas en clientes"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Google Ads y SEO",
+                          "description": "Posicionamiento en Google y campañas publicitarias para generar leads"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Inteligencia Artificial y Automatización",
+                          "description": "Implementación de IA para filtrar y responder consultas de clientes"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            })
+          }}
+        />
       </head>
       <body className={`${inter.className} antialiased`}>
         {/* Google Tag Manager (noscript) */}

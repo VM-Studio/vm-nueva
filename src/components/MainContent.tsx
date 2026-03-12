@@ -294,7 +294,7 @@ const MainContent: React.FC = () => {
                 width={60}
                 height={60}
                 src={Logo}
-                alt="Logo"
+                alt="VM Studio - Desarrollo Web y Marketing Digital"
               />
             </Link>
               <ul className="space-y-4 pb-4">
