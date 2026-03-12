@@ -104,9 +104,7 @@ const MainContent: React.FC = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
-                  href="https://wa.me/541124508191"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/contacto"
                   className="
                     group relative px-6 sm:px-8 py-4 
                     bg-gradient-to-r from-gray-900 to-blue-700
@@ -416,9 +414,7 @@ const MainContent: React.FC = () => {
             </p>
             
             <a
-              href="https://wa.me/541124508191"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/contacto"
               className="
                 inline-block px-8 sm:px-12 py-4
                 bg-gradient-to-r from-gray-900 to-blue-700

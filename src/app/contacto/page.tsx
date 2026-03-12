@@ -8,6 +8,7 @@ type FormState = {
   email: string;
   phone: string;
   notes: string;
+  whatsapp: "si" | "no" | "";
 };
 
 export default function ContactoPage() {
@@ -17,6 +18,7 @@ export default function ContactoPage() {
     email: "",
     phone: "",
     notes: "",
+    whatsapp: "",
   });
 
   const [status, setStatus] = useState<string | null>(null);
@@ -140,6 +142,37 @@ export default function ContactoPage() {
                 rows={5}
                 className="w-full px-4 py-3 bg-white border border-gray-200 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-blue-500 transition-colors duration-200 resize-none min-h-[120px]"
               />
+            </div>
+
+            {/* ¿Responder por WhatsApp? */}
+            <div className="flex flex-col gap-2">
+              <label className="text-[11px] font-medium tracking-[0.15em] text-gray-500">
+                ¿DESEA QUE TE CONTESTEMOS POR WHATSAPP?
+              </label>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => update("whatsapp", "si")}
+                  className={`px-6 py-2.5 text-sm font-medium tracking-wider border transition-all duration-200 ${
+                    form.whatsapp === "si"
+                      ? "bg-gray-900 text-white border-gray-900"
+                      : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                  }`}
+                >
+                  SÍ
+                </button>
+                <button
+                  type="button"
+                  onClick={() => update("whatsapp", "no")}
+                  className={`px-6 py-2.5 text-sm font-medium tracking-wider border transition-all duration-200 ${
+                    form.whatsapp === "no"
+                      ? "bg-gray-900 text-white border-gray-900"
+                      : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                  }`}
+                >
+                  NO
+                </button>
+              </div>
             </div>
 
             {/* Divider */}
