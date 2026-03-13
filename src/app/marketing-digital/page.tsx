@@ -3,9 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
 
-const Software = "/web.gif";
-const Google = "/google.gif";
-const Automatic = "/ia.gif";
+const GoogleAds = "/GOOGLEADS.gif";
+const SEO = "/SEO.gif";
+const IA = "/INTELIGENCIAART.gif";
 const Logo = "/log.png";
 
 export default function LandingMarketingDigital() {
@@ -15,19 +15,19 @@ export default function LandingMarketingDigital() {
       title: "1. GOOGLE ADS",
       subtitle: "Publicidad en Google",
       description: "Creamos y gestionamos campañas en Google Ads que ponen tu empresa frente a personas que están buscando activamente lo que ofrecés, en el momento exacto.",
-      imageSrc: Google,
+      imageSrc: GoogleAds,
     },
     {
       title: "2. POSICIONAMIENTO SEO",
       subtitle: "SEO & Google My Business",
       description: "Optimizamos tu perfil de Google My Business y tu web para que aparezcas en los primeros resultados orgánicos y en el mapa de Google de forma permanente.",
-      imageSrc: Software,
+      imageSrc: SEO,
     },
     {
       title: "3. AUTOMATIZACIÓN CON IA",
       subtitle: "IA & Automatización de leads",
       description: "Implementamos inteligencia artificial para filtrar, responder y gestionar las consultas que llegan, para que no pierdas ningún cliente potencial.",
-      imageSrc: Automatic,
+      imageSrc: IA,
     }
   ];
 
