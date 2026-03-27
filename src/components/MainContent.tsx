@@ -104,7 +104,7 @@ const MainContent: React.FC = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
-                  href="/contacto"
+                  href="/cotizador"
                   className="
                     group relative px-6 sm:px-8 py-4 
                     bg-gradient-to-r from-gray-900 to-blue-700
@@ -414,7 +414,7 @@ const MainContent: React.FC = () => {
             </p>
             
             <a
-              href="/contacto"
+              href="/cotizador"
               className="
                 inline-block px-8 sm:px-12 py-4
                 bg-gradient-to-r from-gray-900 to-blue-700
@@ -427,6 +427,40 @@ const MainContent: React.FC = () => {
             >
               PEDIR MAQUETA WEB GRATIS
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Cotizador Section */}
+      <section className="relative py-16 sm:py-24 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto text-center">
+            <span className="text-[11px] font-medium tracking-[0.2em] text-gray-500">[ COTIZADOR ]</span>
+            <h2 className="mt-4 text-4xl sm:text-5xl font-light tracking-tight text-black">
+              ¿Cuánto cuesta tu{' '}
+              <span className="font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+                proyecto?
+              </span>
+            </h2>
+            <p className="mt-4 text-base text-gray-500 font-light">
+              Calculá tu presupuesto estimado en menos de 2 minutos.
+              <span className="block mt-1">Sin registrarte, sin compromiso.</span>
+            </p>
+            <div className="mt-8">
+              <a
+                href="/cotizador"
+                className="
+                  inline-block px-10 py-4
+                  bg-gradient-to-r from-gray-900 to-blue-700
+                  text-white text-sm font-medium tracking-[0.2em]
+                  transition-all duration-300
+                  hover:scale-105 hover:shadow-xl
+                  active:scale-[0.98]
+                "
+              >
+                CALCULAR AHORA →
+              </a>
+            </div>
           </div>
         </div>
       </section>
