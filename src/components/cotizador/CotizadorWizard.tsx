@@ -133,7 +133,39 @@ export default function CotizadorWizard() {
       const res = await fetch(`${apiUrl}/api/cotizador/submit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          servicios: formData.servicios,
+          web: {
+            tipo: formData.web.tipo,
+            paginas: formData.web.paginas,
+            contacto: formData.web.contacto,
+            extras: formData.web.funcionalidades,
+          },
+          app: {
+            tipo: formData.app.tipo,
+            rubro: formData.app.rubro,
+            extras: formData.app.funcionalidades,
+          },
+          ads: {
+            googlePresupuesto: formData.ads.googlePresupuesto,
+            metaPresupuesto: formData.ads.metaPresupuesto,
+            tieneCuenta: formData.ads.cuentaCreada,
+          },
+          general: {
+            etapa: formData.general.etapa,
+            tieneWeb: formData.general.tieneWeb,
+            urlWeb: formData.general.urlWeb,
+            cuandoEmpezar: formData.general.cuando,
+            comoNosConocio: formData.general.comoConociste,
+          },
+          datos: {
+            nombre: formData.datos.nombre,
+            empresa: formData.datos.empresa,
+            email: formData.datos.email,
+            whatsapp: formData.datos.whatsapp,
+            preferenciaContacto: formData.datos.contactoPreferido,
+          },
+        }),
       });
       if (!res.ok) throw new Error('Error al procesar tu presupuesto');
       const data = await res.json();
