@@ -1,329 +1,253 @@
 'use client'
 
-import { useState, useEffect } from 'react';
-import StepIndicator from './StepIndicator';
-import Step1Servicio, { type ServicioType } from './steps/Step1Servicio';
-import Step2Web from './steps/Step2Web';
-import Step3App from './steps/Step3App';
-import Step4Ads from './steps/Step4Ads';
-import Step5General from './steps/Step5General';
-import Step6Datos from './steps/Step6Datos';
-import ResultadoCotizacion from './ResultadoCotizacion';
+import { useState, useEffect } from 'react'
+import StepIndicator from './StepIndicator'
+import Step1Servicio from './steps/Step1Servicio'
+import Step2Web from './steps/Step2Web'
+import Step3App from './steps/Step3App'
+import Step4Ads from './steps/Step4Ads'
+import Step5General from './steps/Step5General'
+import Step6Datos from './steps/Step6Datos'
+import ResultadoCotizacion from './ResultadoCotizacion'
 
-const LS_KEY = 'vm_cotizador_progress';
+const LS_KEY = 'vm_cotizador_progress'
 
-interface FormData {
-  servicios: ServicioType[];
-  web: { tipo: string; paginas: string; contacto: string[]; funcionalidades: string[] };
-  app: { tipo: string; rubro: string; funcionalidades: string[] };
-  ads: { googlePresupuesto: string; metaPresupuesto: string; cuentaCreada: string };
-  general: { etapa: string; tieneWeb: string; urlWeb: string; cuando: string; comoConociste: string };
-  datos: { nombre: string; empresa: string; email: string; whatsapp: string; contactoPreferido: string; acepta: boolean };
+interface FormState {
+  servicios: string[]
+  webTipo: string
+  webPaginas: string
+  webContacto: string[]
+  webExtras: string[]
+  appTipo: string
+  appRubro: string
+  appExtras: string[]
+  googleInversion: string
+  metaInversion: string
+  tieneCuentaAds: boolean | undefined
+  etapaNegocio: string
+  tieneWeb: boolean | undefined
+  urlWebActual: string
+  cuandoEmpezar: string
+  comoNosConocio: string
+  nombre: string
+  empresa: string
+  email: string
+  whatsapp: string
+  preferenciaContacto: string
+  aceptaContacto: boolean
 }
 
-const defaultFormData: FormData = {
+const INITIAL: FormState = {
   servicios: [],
-  web: { tipo: '', paginas: '', contacto: [], funcionalidades: [] },
-  app: { tipo: '', rubro: '', funcionalidades: [] },
-  ads: { googlePresupuesto: '', metaPresupuesto: '', cuentaCreada: '' },
-  general: { etapa: '', tieneWeb: '', urlWeb: '', cuando: '', comoConociste: '' },
-  datos: { nombre: '', empresa: '', email: '', whatsapp: '', contactoPreferido: 'whatsapp', acepta: false },
-};
-
-type StepKey = 'step1' | 'step2' | 'step3' | 'step4' | 'step5' | 'step6';
-
-interface StepConfig {
-  key: StepKey;
-  label: string;
-  condition: (fd: FormData) => boolean;
-}
-
-const allSteps: StepConfig[] = [
-  { key: 'step1', label: 'Servicio', condition: () => true },
-  { key: 'step2', label: 'Sitio Web', condition: (fd) => fd.servicios.includes('web') },
-  { key: 'step3', label: 'App', condition: (fd) => fd.servicios.includes('app') },
-  {
-    key: 'step4',
-    label: 'Publicidad',
-    condition: (fd) =>
-      fd.servicios.includes('google_ads') ||
-      fd.servicios.includes('meta_ads') ||
-      fd.servicios.includes('combo_ads'),
-  },
-  { key: 'step5', label: 'Tu negocio', condition: () => true },
-  { key: 'step6', label: 'Tus datos', condition: () => true },
-];
-
-function getActiveSteps(fd: FormData): StepConfig[] {
-  return allSteps.filter((s) => s.condition(fd));
+  webTipo: '', webPaginas: '', webContacto: [], webExtras: [],
+  appTipo: '', appRubro: '', appExtras: [],
+  googleInversion: '', metaInversion: '', tieneCuentaAds: undefined,
+  etapaNegocio: '', tieneWeb: undefined, urlWebActual: '',
+  cuandoEmpezar: '', comoNosConocio: '',
+  nombre: '', empresa: '', email: '', whatsapp: '',
+  preferenciaContacto: '', aceptaContacto: false,
 }
 
 interface Resultado {
-  total: string;
-  tiempoEstimado: string;
-  presupuestoNumber: string;
-  pdfUrl: string;
+  total: number
+  tiempoEstimado: { label: string }
+  pdfUrl: string
+  presupuestoNumber: string
+}
+
+const STEP_LABELS = ['Servicio', 'Web', 'App', 'Publicidad', 'General', 'Datos']
+
+function getActiveSteps(servicios: string[]) {
+  const steps = [1]
+  if (servicios.includes('web')) steps.push(2)
+  if (servicios.includes('app')) steps.push(3)
+  if (servicios.some(s => ['google_ads', 'meta_ads', 'combo_ads'].includes(s))) steps.push(4)
+  steps.push(5, 6)
+  return steps
 }
 
 export default function CotizadorWizard() {
-  const [formData, setFormData] = useState<FormData>(defaultFormData);
-  const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [resultado, setResultado] = useState<Resultado | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
+  const [form, setForm] = useState<FormState>(INITIAL)
+  const [currentStep, setCurrentStep] = useState(1)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState('')
+  const [resultado, setResultado] = useState<Resultado | null>(null)
 
-  // Restore from localStorage
   useEffect(() => {
-    setMounted(true);
     try {
-      const saved = localStorage.getItem(LS_KEY);
+      const saved = localStorage.getItem(LS_KEY)
       if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.formData) setFormData(parsed.formData);
-        if (typeof parsed.currentStepIndex === 'number') setCurrentStepIndex(parsed.currentStepIndex);
+        const parsed = JSON.parse(saved)
+        setForm(parsed.form ?? INITIAL)
+        setCurrentStep(parsed.step ?? 1)
       }
-    } catch {
-      // ignore
-    }
-  }, []);
+    } catch { /* ignore */ }
+  }, [])
 
-  // Save to localStorage on change
   useEffect(() => {
-    if (!mounted) return;
-    try {
-      localStorage.setItem(LS_KEY, JSON.stringify({ formData, currentStepIndex }));
-    } catch {
-      // ignore
-    }
-  }, [formData, currentStepIndex, mounted]);
+    if (resultado) return
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ form, step: currentStep })) }
+    catch { /* ignore */ }
+  }, [form, currentStep, resultado])
 
-  const activeSteps = getActiveSteps(formData);
-  const currentStep = activeSteps[currentStepIndex];
+  const activeSteps = getActiveSteps(form.servicios)
+  const currentIdx = activeSteps.indexOf(currentStep)
+  const stepLabels = activeSteps.map(s => STEP_LABELS[s - 1])
+
+  const setField = (field: string, val: string | boolean | string[]) =>
+    setForm(prev => ({ ...prev, [field]: val }))
 
   const handleNext = () => {
-    // Re-calculate active steps after potential formData change
-    const steps = getActiveSteps(formData);
-    if (currentStepIndex < steps.length - 1) {
-      setCurrentStepIndex((i) => i + 1);
+    setError('')
+    if (currentStep === 1 && form.servicios.length === 0) {
+      setError('Seleccioná al menos un servicio para continuar.')
+      return
     }
-  };
+    if (currentStep === 2 && !form.webTipo) {
+      setError('Seleccioná el tipo de web.')
+      return
+    }
+    if (currentStep === 3 && !form.appTipo) {
+      setError('Seleccioná el tipo de aplicación.')
+      return
+    }
+    const nextIdx = currentIdx + 1
+    if (nextIdx < activeSteps.length) setCurrentStep(activeSteps[nextIdx])
+  }
 
   const handleBack = () => {
-    if (currentStepIndex > 0) {
-      setCurrentStepIndex((i) => i - 1);
-    }
-  };
-
-  const handleServiciosChange = (servicios: ServicioType[]) => {
-    const newFormData = { ...formData, servicios };
-    setFormData(newFormData);
-    // Adjust step index if current step becomes invalid
-    const newActiveSteps = getActiveSteps(newFormData);
-    if (currentStepIndex >= newActiveSteps.length) {
-      setCurrentStepIndex(newActiveSteps.length - 1);
-    }
-  };
+    setError('')
+    const prevIdx = currentIdx - 1
+    if (prevIdx >= 0) setCurrentStep(activeSteps[prevIdx])
+  }
 
   const handleSubmit = async () => {
-    setIsSubmitting(true);
-    setError(null);
+    setError('')
+    if (!form.nombre || !form.email || !form.whatsapp) {
+      setError('Completá nombre, email y WhatsApp.')
+      return
+    }
+    if (!form.aceptaContacto) {
+      setError('Aceptá el checkbox para continuar.')
+      return
+    }
+    setIsSubmitting(true)
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_APP_API_URL;
-      const res = await fetch(`${apiUrl}/api/cotizador/submit`, {
+      const API = process.env.NEXT_PUBLIC_APP_API_URL ?? 'https://app.vmstudioweb.online'
+      const token = typeof window !== 'undefined' ? localStorage.getItem('vm_token') : null
+      const res = await fetch(`${API}/api/cotizador/submit`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify({
-          servicios: formData.servicios,
+          servicios: form.servicios,
           web: {
-            tipo: formData.web.tipo,
-            paginas: formData.web.paginas,
-            contacto: formData.web.contacto,
-            extras: formData.web.funcionalidades,
+            tipo: form.webTipo,
+            paginas: form.webPaginas,
+            contacto: form.webContacto,
+            extras: form.webExtras,
           },
           app: {
-            tipo: formData.app.tipo,
-            rubro: formData.app.rubro,
-            extras: formData.app.funcionalidades,
+            tipo: form.appTipo,
+            rubro: form.appRubro,
+            extras: form.appExtras,
           },
           ads: {
-            googlePresupuesto: formData.ads.googlePresupuesto,
-            metaPresupuesto: formData.ads.metaPresupuesto,
-            tieneCuenta: formData.ads.cuentaCreada,
+            googlePresupuesto: form.googleInversion,
+            metaPresupuesto: form.metaInversion,
+            tieneCuenta: form.tieneCuentaAds,
           },
           general: {
-            etapa: formData.general.etapa,
-            tieneWeb: formData.general.tieneWeb,
-            urlWeb: formData.general.urlWeb,
-            cuandoEmpezar: formData.general.cuando,
-            comoNosConocio: formData.general.comoConociste,
+            etapa: form.etapaNegocio,
+            tieneWeb: form.tieneWeb,
+            urlWeb: form.urlWebActual,
+            cuandoEmpezar: form.cuandoEmpezar,
+            comoNosConocio: form.comoNosConocio,
           },
           datos: {
-            nombre: formData.datos.nombre,
-            empresa: formData.datos.empresa,
-            email: formData.datos.email,
-            whatsapp: formData.datos.whatsapp,
-            preferenciaContacto: formData.datos.contactoPreferido,
+            nombre: form.nombre,
+            empresa: form.empresa,
+            email: form.email,
+            whatsapp: form.whatsapp,
+            preferenciaContacto: form.preferenciaContacto,
           },
         }),
-      });
-      if (!res.ok) throw new Error('Error al procesar tu presupuesto');
-      const data = await res.json();
-      setResultado(data);
-      localStorage.removeItem(LS_KEY);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Ocurrió un error inesperado');
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.error ?? 'Ocurrió un error. Intentá nuevamente.')
+        return
+      }
+      localStorage.removeItem(LS_KEY)
+      setResultado(data)
+    } catch {
+      setError('Error de conexión. Revisá tu internet e intentá nuevamente.')
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
-  };
+  }
 
   const handleReset = () => {
-    setFormData(defaultFormData);
-    setCurrentStepIndex(0);
-    setResultado(null);
-    setError(null);
-    localStorage.removeItem(LS_KEY);
-  };
-
-  if (!mounted) {
-    return (
-      <div className="flex items-center justify-center py-24">
-        <div className="w-8 h-8 border-2 border-gray-200 border-t-blue-600 rounded-full animate-spin" />
-      </div>
-    );
+    setForm(INITIAL)
+    setCurrentStep(1)
+    setResultado(null)
+    localStorage.removeItem(LS_KEY)
   }
 
-  if (resultado) {
-    return (
-      <div className="max-w-[680px] mx-auto">
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-10">
-          <ResultadoCotizacion
-            resultado={resultado}
-            nombre={formData.datos.nombre}
-            email={formData.datos.email}
-          />
-          <div className="mt-8 pt-6 border-t border-gray-100 text-center">
-            <button
-              type="button"
-              onClick={handleReset}
-              className="text-sm text-gray-400 hover:text-gray-600 transition-colors underline underline-offset-4"
-            >
-              Hacer una nueva cotización
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  if (isSubmitting) return (
+    <div className="min-h-[400px] flex flex-col items-center justify-center gap-4">
+      <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
+      <p className="text-sm text-gray-500 font-light">Estamos calculando tu presupuesto... ⚡</p>
+    </div>
+  )
 
-  const stepLabels = activeSteps.map((s) => ({ label: s.label }));
+  if (resultado) return (
+    <ResultadoCotizacion
+      nombre={form.nombre}
+      email={form.email}
+      total={resultado.total}
+      tiempoEstimado={resultado.tiempoEstimado.label}
+      pdfUrl={resultado.pdfUrl}
+      presupuestoNumber={resultado.presupuestoNumber}
+      onReset={handleReset}
+    />
+  )
 
   return (
-    <div className="max-w-[680px] mx-auto">
+    <div className="bg-white p-6 sm:p-8 shadow-sm">
       <StepIndicator
-        currentStep={currentStepIndex + 1}
+        currentStep={currentIdx + 1}
         totalSteps={activeSteps.length}
-        steps={stepLabels}
+        stepLabels={stepLabels}
       />
-
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-10 mt-6">
-        {/* Step content */}
-        <div className="min-h-[300px]">
-          {currentStep?.key === 'step1' && (
-            <Step1Servicio
-              selected={formData.servicios}
-              onChange={handleServiciosChange}
-            />
-          )}
-          {currentStep?.key === 'step2' && (
-            <Step2Web
-              data={formData.web}
-              onChange={(web) => setFormData((fd) => ({ ...fd, web }))}
-            />
-          )}
-          {currentStep?.key === 'step3' && (
-            <Step3App
-              data={formData.app}
-              onChange={(app) => setFormData((fd) => ({ ...fd, app }))}
-            />
-          )}
-          {currentStep?.key === 'step4' && (
-            <Step4Ads
-              data={formData.ads}
-              servicios={formData.servicios}
-              onChange={(ads) => setFormData((fd) => ({ ...fd, ads }))}
-            />
-          )}
-          {currentStep?.key === 'step5' && (
-            <Step5General
-              data={formData.general}
-              onChange={(general) => setFormData((fd) => ({ ...fd, general }))}
-            />
-          )}
-          {currentStep?.key === 'step6' && (
-            <Step6Datos
-              data={formData.datos}
-              isSubmitting={isSubmitting}
-              onChange={(datos) => setFormData((fd) => ({ ...fd, datos }))}
-              onSubmit={handleSubmit}
-            />
-          )}
-        </div>
-
-        {/* Error */}
-        {error && (
-          <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600 flex items-start gap-2">
-            <span>⚠️</span>
-            <div>
-              <p>{error}</p>
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="mt-2 text-red-700 underline underline-offset-2 text-xs"
-              >
-                Reintentar
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Navigation */}
-        {currentStep?.key !== 'step6' && (
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
-            <button
-              type="button"
-              onClick={handleBack}
-              disabled={currentStepIndex === 0}
-              className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-800 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-            >
-              ← Anterior
-            </button>
-
-            <button
-              type="button"
-              onClick={handleNext}
-              disabled={currentStep?.key === 'step1' && formData.servicios.length === 0}
-              className="px-8 py-3 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-[0.15em] rounded-lg transition-opacity hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              Siguiente →
-            </button>
-          </div>
-        )}
-
-        {currentStep?.key === 'step6' && currentStepIndex > 0 && (
-          <div className="mt-4">
-            <button
-              type="button"
-              onClick={handleBack}
-              disabled={isSubmitting}
-              className="flex items-center gap-2 text-sm text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-30"
-            >
-              ← Volver
-            </button>
-          </div>
-        )}
+      <div className="min-h-[350px] mt-6">
+        {currentStep === 1 && <Step1Servicio selected={form.servicios} onChange={val => setField('servicios', val)} />}
+        {currentStep === 2 && <Step2Web webTipo={form.webTipo} webPaginas={form.webPaginas} webContacto={form.webContacto} webExtras={form.webExtras} onChange={setField} />}
+        {currentStep === 3 && <Step3App appTipo={form.appTipo} appRubro={form.appRubro} appExtras={form.appExtras} onChange={setField} />}
+        {currentStep === 4 && <Step4Ads servicios={form.servicios} googleInversion={form.googleInversion} metaInversion={form.metaInversion} tieneCuentaAds={form.tieneCuentaAds} onChange={setField} />}
+        {currentStep === 5 && <Step5General etapaNegocio={form.etapaNegocio} tieneWeb={form.tieneWeb} urlWebActual={form.urlWebActual} cuandoEmpezar={form.cuandoEmpezar} comoNosConocio={form.comoNosConocio} onChange={setField} />}
+        {currentStep === 6 && <Step6Datos nombre={form.nombre} empresa={form.empresa} email={form.email} whatsapp={form.whatsapp} preferenciaContacto={form.preferenciaContacto} aceptaContacto={form.aceptaContacto} onChange={setField} onSubmit={handleSubmit} isSubmitting={isSubmitting} />}
       </div>
+      {error && <p className="text-sm text-red-500 mt-4">{error}</p>}
+      {currentStep !== 6 && (
+        <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-100">
+          <button onClick={handleBack} disabled={currentIdx === 0}
+            className="px-5 py-2.5 border border-gray-300 text-sm text-gray-600 tracking-wider hover:bg-gray-50 transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+            ← Anterior
+          </button>
+          <button onClick={handleNext}
+            className="px-6 py-2.5 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-widest uppercase hover:opacity-90 transition-opacity">
+            Siguiente →
+          </button>
+        </div>
+      )}
+      {currentStep === 6 && currentIdx > 0 && (
+        <button onClick={handleBack} className="mt-3 text-xs text-gray-400 hover:text-gray-600 transition-colors">
+          ← Volver al paso anterior
+        </button>
+      )}
     </div>
-  );
+  )
 }

@@ -1,164 +1,99 @@
 'use client'
 
-interface Step2Props {
-  data: {
-    tipo: string;
-    paginas: string;
-    contacto: string[];
-    funcionalidades: string[];
-  };
-  onChange: (data: Step2Props['data']) => void;
+interface Props {
+  webTipo: string
+  webPaginas: string
+  webContacto: string[]
+  webExtras: string[]
+  onChange: (field: string, val: string | string[]) => void
 }
 
-const tiposWeb = [
-  { value: 'informativa', label: 'Sitio Informativo', desc: 'Presentá tu empresa o servicio' },
-  { value: 'catalogo', label: 'Catálogo de Productos', desc: 'Mostrá tu portfolio o catálogo' },
-  { value: 'ecommerce', label: 'Tienda Online (eCommerce)', desc: 'Vendé tus productos online' },
-  { value: 'reservas', label: 'Sistema de Reservas', desc: 'Turnos, agendas y reservas online' },
-  { value: 'landing', label: 'Landing Page', desc: 'Una página de conversión' },
-];
+const TIPOS = [
+  { id: 'informativa', label: 'Web informativa / institucional' },
+  { id: 'catalogo', label: 'Web con catálogo de productos (sin venta online)' },
+  { id: 'ecommerce', label: 'Tienda online / E-commerce' },
+  { id: 'reservas', label: 'Web con sistema de reservas / turnos' },
+  { id: 'landing', label: 'Landing page (página de venta única)' },
+]
+const PAGINAS = ['1-3', '4-7', '8+']
+const CONTACTO = ['whatsapp', 'formulario']
+const EXTRAS = [
+  { id: 'blog', label: 'Blog / Noticias' },
+  { id: 'reservas', label: 'Reservas / Turnos online' },
+  { id: 'carrito', label: 'Carrito de compras' },
+  { id: 'catalogo', label: 'Catálogo sin carrito' },
+  { id: 'pagos', label: 'Pasarela de pagos (MercadoPago)' },
+  { id: 'login', label: 'Sistema de login de usuarios' },
+  { id: 'panel_admin', label: 'Panel de administración propio' },
+  { id: 'seo', label: 'SEO avanzado' },
+  { id: 'multiidioma', label: 'Multiidioma' },
+  { id: 'redes', label: 'Integración con redes sociales' },
+  { id: 'analytics', label: 'Google Analytics + píxel' },
+  { id: 'chat', label: 'Chat en vivo' },
+]
 
-const paginasOps = [
-  { value: '1-3', label: '1 a 3 páginas' },
-  { value: '4-7', label: '4 a 7 páginas' },
-  { value: '8+', label: '8 o más páginas' },
-];
-
-const contactoOps = [
-  { value: 'whatsapp', label: '💬 WhatsApp' },
-  { value: 'formulario', label: '📝 Formulario de contacto' },
-];
-
-const funcionalidadesOps = [
-  'Blog', 'Sistema de reservas', 'Carrito de compras', 'Catálogo de productos',
-  'MercadoPago', 'Login de usuarios', 'Panel de administración',
-  'SEO avanzado', 'Multiidioma', 'Integración con redes sociales',
-  'Google Analytics', 'Chat en vivo',
-];
-
-export default function Step2Web({ data, onChange }: Step2Props) {
-  const update = (field: keyof Step2Props['data'], value: string | string[]) => {
-    onChange({ ...data, [field]: value });
-  };
-
-  const toggleArray = (field: 'contacto' | 'funcionalidades', val: string) => {
-    const arr = data[field];
-    if (arr.includes(val)) {
-      update(field, arr.filter((v) => v !== val));
-    } else {
-      update(field, [...arr, val]);
-    }
-  };
+export default function Step2Web({ webTipo, webPaginas, webContacto, webExtras, onChange }: Props) {
+  const toggleArr = (field: string, arr: string[], id: string) => {
+    const next = arr.includes(id) ? arr.filter(x => x !== id) : [...arr, id]
+    onChange(field, next)
+  }
 
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl sm:text-3xl font-light text-black mb-1">
-          Contanos sobre tu sitio web
-        </h2>
-        <p className="text-sm text-gray-500">Elegí las opciones que mejor describan tu proyecto.</p>
+        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Paso 2</p>
+        <h2 className="text-xl font-light text-gray-900 mb-4">Contanos sobre tu web</h2>
       </div>
-
-      {/* Tipo de web */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">¿Qué tipo de sitio web necesitás?</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {tiposWeb.map((t) => (
-            <button
-              key={t.value}
-              type="button"
-              onClick={() => update('tipo', t.value)}
-              className={`text-left p-4 border rounded-lg transition-all duration-200 ${
-                data.tipo === t.value
-                  ? 'border-blue-500 bg-blue-50 shadow-sm'
-                  : 'border-gray-200 bg-white hover:border-gray-400'
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-sm font-medium text-black">{t.label}</span>
-                  <p className="text-xs text-gray-500 mt-0.5">{t.desc}</p>
-                </div>
-                {data.tipo === t.value && <span className="text-blue-600 text-lg">✓</span>}
-              </div>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Qué tipo de web necesitás?</p>
+        <div className="space-y-2">
+          {TIPOS.map(t => (
+            <button key={t.id} onClick={() => onChange('webTipo', t.id)}
+              className={`w-full flex items-center gap-3 p-3 border text-left text-sm transition-all
+                ${webTipo === t.id ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
+              <span className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${webTipo === t.id ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`} />
+              {t.label}
             </button>
           ))}
         </div>
       </div>
-
-      {/* Cantidad de páginas */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">¿Cuántas páginas aproximadamente?</p>
-        <div className="flex flex-wrap gap-3">
-          {paginasOps.map((p) => (
-            <button
-              key={p.value}
-              type="button"
-              onClick={() => update('paginas', p.value)}
-              className={`px-5 py-2.5 border rounded-lg text-sm transition-all duration-200 ${
-                data.paginas === p.value
-                  ? 'border-blue-500 bg-blue-50 text-blue-700 font-medium shadow-sm'
-                  : 'border-gray-200 bg-white text-black hover:border-gray-400'
-              }`}
-            >
-              {p.label}
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cuántas páginas?</p>
+        <div className="flex gap-3">
+          {PAGINAS.map(p => (
+            <button key={p} onClick={() => onChange('webPaginas', p)}
+              className={`flex-1 py-2.5 text-sm border transition-all
+                ${webPaginas === p ? 'border-blue-600 bg-blue-50 text-blue-700 font-medium' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}>
+              {p}
             </button>
           ))}
         </div>
       </div>
-
-      {/* Contacto */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">¿Cómo querés que te contacten? (puede ser más de uno)</p>
-        <div className="flex flex-wrap gap-3">
-          {contactoOps.map((c) => {
-            const sel = data.contacto.includes(c.value);
-            return (
-              <button
-                key={c.value}
-                type="button"
-                onClick={() => toggleArray('contacto', c.value)}
-                className={`flex items-center gap-2 px-5 py-2.5 border rounded-lg text-sm transition-all duration-200 ${
-                  sel
-                    ? 'border-blue-500 bg-blue-50 text-blue-700 font-medium shadow-sm'
-                    : 'border-gray-200 bg-white text-black hover:border-gray-400'
-                }`}
-              >
-                {c.label}
-                {sel && <span className="text-blue-600">✓</span>}
-              </button>
-            );
-          })}
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cómo contactan tus clientes?</p>
+        <div className="flex gap-3">
+          {CONTACTO.map(c => (
+            <button key={c} onClick={() => toggleArr('webContacto', webContacto, c)}
+              className={`flex-1 py-2.5 text-sm border transition-all capitalize
+                ${webContacto.includes(c) ? 'border-blue-600 bg-blue-50 text-blue-700 font-medium' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}>
+              {c === 'whatsapp' ? 'WhatsApp' : 'Formulario de contacto'}
+            </button>
+          ))}
         </div>
       </div>
-
-      {/* Funcionalidades extras */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-1">
-          Funcionalidades adicionales{' '}
-          <span className="font-normal text-gray-400">(opcional)</span>
-        </p>
-        <p className="text-xs text-gray-400 mb-3">Seleccioná todo lo que se aplique.</p>
-        <div className="flex flex-wrap gap-2">
-          {funcionalidadesOps.map((f) => {
-            const sel = data.funcionalidades.includes(f);
-            return (
-              <button
-                key={f}
-                type="button"
-                onClick={() => toggleArray('funcionalidades', f)}
-                className={`px-4 py-2 border rounded-full text-xs transition-all duration-200 ${
-                  sel
-                    ? 'border-blue-500 bg-blue-50 text-blue-700 font-medium'
-                    : 'border-gray-200 bg-white text-gray-600 hover:border-gray-400'
-                }`}
-              >
-                {f}
-              </button>
-            );
-          })}
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">Funcionalidades adicionales (opcional)</p>
+        <div className="space-y-2">
+          {EXTRAS.map(e => (
+            <button key={e.id} onClick={() => toggleArr('webExtras', webExtras, e.id)}
+              className={`w-full flex items-center gap-3 p-3 border text-left text-sm transition-all
+                ${webExtras.includes(e.id) ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
+              <span className={`w-4 h-4 border-2 flex-shrink-0 ${webExtras.includes(e.id) ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`} />
+              {e.label}
+            </button>
+          ))}
         </div>
       </div>
     </div>
-  );
+  )
 }

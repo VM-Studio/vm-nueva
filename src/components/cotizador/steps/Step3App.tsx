@@ -1,134 +1,83 @@
 'use client'
 
-interface Step3Props {
-  data: {
-    tipo: string;
-    rubro: string;
-    funcionalidades: string[];
-  };
-  onChange: (data: Step3Props['data']) => void;
+interface Props {
+  appTipo: string
+  appRubro: string
+  appExtras: string[]
+  onChange: (field: string, val: string | string[]) => void
 }
 
-const tiposApp = [
-  { value: 'pwa', label: 'PWA', desc: 'Funciona como app desde el navegador, sin instalar' },
-  { value: 'nativa', label: 'Nativa Android + iOS', desc: 'App descargable en Google Play y App Store' },
-];
+const TIPOS = [
+  { id: 'web', label: 'Aplicación Web (PWA)', desc: 'Instalable desde el browser en cualquier celular' },
+  { id: 'mobile', label: 'Aplicación Móvil Nativa (Android + iOS)', desc: 'Disponible en Play Store y App Store' },
+]
+const RUBROS = ['Comercio / Ventas', 'Restaurante / Gastronomía', 'Servicios profesionales', 'Salud / Bienestar', 'Educación', 'Entretenimiento', 'Otro']
+const EXTRAS = [
+  { id: 'usuarios', label: 'Sistema de usuarios y perfiles' },
+  { id: 'push', label: 'Notificaciones push' },
+  { id: 'chat', label: 'Chat en tiempo real' },
+  { id: 'pagos', label: 'Pagos dentro de la app' },
+  { id: 'geo', label: 'Geolocalización / Mapas' },
+  { id: 'dashboard', label: 'Dashboard con estadísticas' },
+  { id: 'api', label: 'Integración con sistema externo' },
+  { id: 'admin', label: 'Panel de administración' },
+  { id: 'reservas', label: 'Sistema de reservas / turnos' },
+  { id: 'ecommerce', label: 'Tienda / E-commerce' },
+  { id: 'idiomas', label: 'Multiidioma' },
+  { id: 'offline', label: 'Modo sin conexión (offline)' },
+]
 
-const rubros = [
-  { value: 'comercio', label: '🛍️ Comercio' },
-  { value: 'restaurante', label: '🍽️ Restaurante / Gastronomía' },
-  { value: 'servicios', label: '🔧 Servicios' },
-  { value: 'salud', label: '🏥 Salud' },
-  { value: 'educacion', label: '📚 Educación' },
-  { value: 'entretenimiento', label: '🎮 Entretenimiento' },
-  { value: 'otro', label: '💡 Otro' },
-];
-
-const funcionalidadesOps = [
-  'Registro de usuarios', 'Notificaciones push', 'Chat en tiempo real',
-  'Pagos in-app', 'Geolocalización', 'Dashboard de métricas',
-  'Integración con API externa', 'Panel de administración',
-  'Sistema de reservas', 'eCommerce', 'Multiidioma', 'Modo offline',
-];
-
-export default function Step3App({ data, onChange }: Step3Props) {
-  const update = (field: keyof Step3Props['data'], value: string | string[]) => {
-    onChange({ ...data, [field]: value });
-  };
-
-  const toggleFuncionalidad = (val: string) => {
-    const arr = data.funcionalidades;
-    if (arr.includes(val)) {
-      update('funcionalidades', arr.filter((v) => v !== val));
-    } else {
-      update('funcionalidades', [...arr, val]);
-    }
-  };
+export default function Step3App({ appTipo, appRubro, appExtras, onChange }: Props) {
+  const toggleExtra = (id: string) => {
+    const next = appExtras.includes(id) ? appExtras.filter(x => x !== id) : [...appExtras, id]
+    onChange('appExtras', next)
+  }
 
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl sm:text-3xl font-light text-black mb-1">
-          Contanos sobre tu aplicación
-        </h2>
-        <p className="text-sm text-gray-500">Elegí las opciones que mejor describan tu proyecto.</p>
+        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Paso 3</p>
+        <h2 className="text-xl font-light text-gray-900 mb-4">Contanos sobre tu aplicación</h2>
       </div>
-
-      {/* Tipo de app */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">¿Qué tipo de aplicación necesitás?</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {tiposApp.map((t) => (
-            <button
-              key={t.value}
-              type="button"
-              onClick={() => update('tipo', t.value)}
-              className={`text-left p-4 border rounded-lg transition-all duration-200 ${
-                data.tipo === t.value
-                  ? 'border-blue-500 bg-blue-50 shadow-sm'
-                  : 'border-gray-200 bg-white hover:border-gray-400'
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-sm font-medium text-black">{t.label}</span>
-                  <p className="text-xs text-gray-500 mt-0.5">{t.desc}</p>
-                </div>
-                {data.tipo === t.value && <span className="text-blue-600 text-lg">✓</span>}
-              </div>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Qué tipo de aplicación?</p>
+        <div className="space-y-3">
+          {TIPOS.map(t => (
+            <button key={t.id} onClick={() => onChange('appTipo', t.id)}
+              className={`w-full p-4 border text-left transition-all
+                ${appTipo === t.id ? 'border-blue-600 bg-blue-50' : 'border-gray-200 bg-white hover:border-gray-300'}`}>
+              <p className={`text-sm font-medium ${appTipo === t.id ? 'text-blue-700' : 'text-gray-800'}`}>{t.label}</p>
+              <p className="text-xs text-gray-400 mt-1">{t.desc}</p>
             </button>
           ))}
         </div>
       </div>
-
-      {/* Rubro */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">¿A qué rubro pertenece tu negocio?</p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {rubros.map((r) => (
-            <button
-              key={r.value}
-              type="button"
-              onClick={() => update('rubro', r.value)}
-              className={`flex items-center gap-2 p-3 border rounded-lg text-sm transition-all duration-200 ${
-                data.rubro === r.value
-                  ? 'border-blue-500 bg-blue-50 text-blue-700 font-medium shadow-sm'
-                  : 'border-gray-200 bg-white text-black hover:border-gray-400'
-              }`}
-            >
-              {r.label}
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Para qué rubro?</p>
+        <div className="space-y-2">
+          {RUBROS.map(r => (
+            <button key={r} onClick={() => onChange('appRubro', r)}
+              className={`w-full flex items-center gap-3 p-3 border text-left text-sm transition-all
+                ${appRubro === r ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
+              <span className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${appRubro === r ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`} />
+              {r}
             </button>
           ))}
         </div>
       </div>
-
-      {/* Funcionalidades */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-1">
-          Funcionalidades{' '}
-          <span className="font-normal text-gray-400">(opcional)</span>
-        </p>
-        <p className="text-xs text-gray-400 mb-3">Seleccioná todo lo que se aplique.</p>
-        <div className="flex flex-wrap gap-2">
-          {funcionalidadesOps.map((f) => {
-            const sel = data.funcionalidades.includes(f);
-            return (
-              <button
-                key={f}
-                type="button"
-                onClick={() => toggleFuncionalidad(f)}
-                className={`px-4 py-2 border rounded-full text-xs transition-all duration-200 ${
-                  sel
-                    ? 'border-blue-500 bg-blue-50 text-blue-700 font-medium'
-                    : 'border-gray-200 bg-white text-gray-600 hover:border-gray-400'
-                }`}
-              >
-                {f}
-              </button>
-            );
-          })}
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">Funcionalidades (opcional)</p>
+        <div className="space-y-2">
+          {EXTRAS.map(e => (
+            <button key={e.id} onClick={() => toggleExtra(e.id)}
+              className={`w-full flex items-center gap-3 p-3 border text-left text-sm transition-all
+                ${appExtras.includes(e.id) ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
+              <span className={`w-4 h-4 border-2 flex-shrink-0 ${appExtras.includes(e.id) ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`} />
+              {e.label}
+            </button>
+          ))}
         </div>
       </div>
     </div>
-  );
+  )
 }

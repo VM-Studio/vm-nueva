@@ -1,47 +1,40 @@
 'use client'
 
-interface StepIndicatorProps {
-  currentStep: number;
-  totalSteps: number;
-  steps: { label: string }[];
+interface Props {
+  currentStep: number
+  totalSteps: number
+  stepLabels: string[]
 }
 
-export default function StepIndicator({ currentStep, totalSteps, steps }: StepIndicatorProps) {
+export default function StepIndicator({ currentStep, totalSteps, stepLabels }: Props) {
   return (
     <div className="mb-8">
-      {/* Progress bar */}
-      <div className="w-full bg-gray-200 rounded-full h-1 mb-4">
+      <div className="flex items-center justify-between mb-2">
+        {stepLabels.map((label, i) => {
+          const stepNum = i + 1
+          const isCompleted = stepNum < currentStep
+          const isCurrent = stepNum === currentStep
+          return (
+            <div key={i} className="flex flex-col items-center flex-1">
+              <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-medium border-2 transition-all
+                ${isCompleted ? 'bg-blue-600 border-blue-600 text-white' :
+                  isCurrent ? 'border-blue-600 text-blue-600 bg-white' :
+                  'border-gray-300 text-gray-400 bg-white'}`}>
+                {isCompleted ? '✓' : stepNum}
+              </div>
+              <span className={`text-[10px] mt-1 hidden sm:block ${isCurrent ? 'text-blue-600 font-medium' : 'text-gray-400'}`}>
+                {label}
+              </span>
+            </div>
+          )
+        })}
+      </div>
+      <div className="w-full bg-gray-200 h-1 rounded-full mt-1">
         <div
-          className="bg-gradient-to-r from-gray-900 to-blue-600 h-1 rounded-full transition-all duration-500"
-          style={{ width: `${((currentStep) / totalSteps) * 100}%` }}
+          className="bg-blue-600 h-1 rounded-full transition-all duration-300"
+          style={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%` }}
         />
       </div>
-
-      {/* Step info */}
-      <div className="flex items-center justify-between">
-        <span className="text-[11px] font-medium tracking-[0.2em] text-gray-500">
-          PASO {currentStep} DE {totalSteps}
-        </span>
-        <span className="text-[11px] font-medium tracking-[0.2em] text-blue-600">
-          {steps[currentStep - 1]?.label}
-        </span>
-      </div>
-
-      {/* Dots */}
-      <div className="flex items-center gap-2 mt-3">
-        {steps.map((_, i) => (
-          <div
-            key={i}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i + 1 < currentStep
-                ? 'bg-blue-600 w-4'
-                : i + 1 === currentStep
-                ? 'bg-gray-900 w-6'
-                : 'bg-gray-300 w-1.5'
-            }`}
-          />
-        ))}
-      </div>
     </div>
-  );
+  )
 }

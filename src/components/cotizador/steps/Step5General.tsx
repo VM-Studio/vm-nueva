@@ -1,153 +1,81 @@
 'use client'
 
-interface Step5Props {
-  data: {
-    etapa: string;
-    tieneWeb: string;
-    urlWeb: string;
-    cuando: string;
-    comoConociste: string;
-  };
-  onChange: (data: Step5Props['data']) => void;
+interface Props {
+  etapaNegocio: string
+  tieneWeb: boolean | undefined
+  urlWebActual: string
+  cuandoEmpezar: string
+  comoNosConocio: string
+  onChange: (field: string, val: string | boolean) => void
 }
 
-const etapas = [
-  { value: 'empezando', label: '🌱 Estoy empezando mi negocio' },
-  { value: 'sin-presencia', label: '🏢 Tengo negocio pero sin presencia online' },
-  { value: 'mejorar', label: '📈 Quiero mejorar lo que ya tengo' },
-  { value: 'escalar', label: '🚀 Quiero escalar y crecer más' },
-];
-
-const cuandoOps = [
-  { value: 'ya', label: '⚡ Lo antes posible' },
-  { value: 'mes', label: '📅 El próximo mes' },
-  { value: '2-3-meses', label: '🗓️ En 2 o 3 meses' },
-  { value: 'investigando', label: '🔍 Solo estoy investigando opciones' },
-];
-
-const comoOps = [
-  { value: 'google', label: '🔍 Google' },
-  { value: 'instagram', label: '📸 Instagram' },
-  { value: 'facebook', label: '👥 Facebook' },
-  { value: 'recomendacion', label: '🤝 Recomendación' },
-  { value: 'otro', label: '💡 Otro' },
-];
-
-export default function Step5General({ data, onChange }: Step5Props) {
-  const update = <K extends keyof Step5Props['data']>(field: K, value: Step5Props['data'][K]) => {
-    onChange({ ...data, [field]: value });
-  };
-
+export default function Step5General({ etapaNegocio, tieneWeb, urlWebActual, cuandoEmpezar, comoNosConocio, onChange }: Props) {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl sm:text-3xl font-light text-black mb-1">
-          Contanos un poco más
-        </h2>
-        <p className="text-sm text-gray-500">Nos ayuda a personalizar mejor tu presupuesto.</p>
+        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Paso 5</p>
+        <h2 className="text-xl font-light text-gray-900 mb-4">Contanos sobre tu negocio</h2>
       </div>
-
-      {/* Etapa del negocio */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">¿En qué etapa está tu negocio?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿En qué etapa está tu negocio?</p>
         <div className="space-y-2">
-          {etapas.map((e) => (
-            <button
-              key={e.value}
-              type="button"
-              onClick={() => update('etapa', e.value)}
-              className={`w-full flex items-center justify-between p-4 border rounded-lg text-sm text-left transition-all duration-200 ${
-                data.etapa === e.value
-                  ? 'border-blue-500 bg-blue-50 shadow-sm'
-                  : 'border-gray-200 bg-white hover:border-gray-400'
-              }`}
-            >
-              <span className={data.etapa === e.value ? 'font-medium text-blue-700' : 'text-black'}>
-                {e.label}
-              </span>
-              {data.etapa === e.value && <span className="text-blue-600">✓</span>}
+          {['Estoy empezando (nuevo negocio)', 'Tengo negocio pero sin presencia online', 'Tengo presencia online pero quiero mejorarla', 'Ya tengo todo, quiero escalar'].map(e => (
+            <button key={e} onClick={() => onChange('etapaNegocio', e)}
+              className={`w-full flex items-center gap-3 p-3 border text-left text-sm transition-all
+                ${etapaNegocio === e ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
+              <span className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${etapaNegocio === e ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`} />
+              {e}
             </button>
           ))}
         </div>
       </div>
-
-      {/* ¿Tenés web? */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">¿Actualmente tenés un sitio web?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Tenés sitio web actualmente?</p>
         <div className="flex gap-3">
-          {['si', 'no'].map((op) => (
-            <button
-              key={op}
-              type="button"
-              onClick={() => update('tieneWeb', op)}
-              className={`flex-1 py-3 border rounded-lg text-sm font-medium transition-all duration-200 ${
-                data.tieneWeb === op
-                  ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-sm'
-                  : 'border-gray-200 bg-white text-black hover:border-gray-400'
-              }`}
-            >
-              {op === 'si' ? 'Sí' : 'No'}
+          {[{ val: true, label: 'Sí' }, { val: false, label: 'No' }].map(o => (
+            <button key={String(o.val)} onClick={() => onChange('tieneWeb', o.val)}
+              className={`flex-1 py-2.5 text-sm border transition-all
+                ${tieneWeb === o.val ? 'border-blue-600 bg-blue-50 text-blue-700 font-medium' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}>
+              {o.label}
             </button>
           ))}
         </div>
-
-        {data.tieneWeb === 'si' && (
-          <div className="mt-3">
-            <input
-              type="url"
-              placeholder="https://tu-sitio.com"
-              value={data.urlWeb}
-              onChange={(e) => update('urlWeb', e.target.value)}
-              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm text-black placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
-            />
-          </div>
+        {tieneWeb && (
+          <input
+            type="url"
+            placeholder="¿Cuál es tu web?"
+            value={urlWebActual}
+            onChange={e => onChange('urlWebActual', e.target.value)}
+            className="w-full mt-3 px-4 py-3 border border-gray-200 text-sm focus:outline-none focus:border-blue-600 bg-white"
+          />
         )}
       </div>
-
-      {/* ¿Cuándo empezar? */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">¿Cuándo querés empezar?</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {cuandoOps.map((c) => (
-            <button
-              key={c.value}
-              type="button"
-              onClick={() => update('cuando', c.value)}
-              className={`flex items-center justify-between p-4 border rounded-lg text-sm text-left transition-all duration-200 ${
-                data.cuando === c.value
-                  ? 'border-blue-500 bg-blue-50 shadow-sm'
-                  : 'border-gray-200 bg-white hover:border-gray-400'
-              }`}
-            >
-              <span className={data.cuando === c.value ? 'font-medium text-blue-700' : 'text-black'}>
-                {c.label}
-              </span>
-              {data.cuando === c.value && <span className="text-blue-600">✓</span>}
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cuándo querés empezar?</p>
+        <div className="space-y-2">
+          {['Lo antes posible', 'En el próximo mes', 'En 2 o 3 meses', 'Solo estoy investigando precios'].map(c => (
+            <button key={c} onClick={() => onChange('cuandoEmpezar', c)}
+              className={`w-full flex items-center gap-3 p-3 border text-left text-sm transition-all
+                ${cuandoEmpezar === c ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
+              <span className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${cuandoEmpezar === c ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`} />
+              {c}
             </button>
           ))}
         </div>
       </div>
-
-      {/* ¿Cómo nos conociste? */}
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">¿Cómo nos conociste?</p>
-        <div className="flex flex-wrap gap-2">
-          {comoOps.map((c) => (
-            <button
-              key={c.value}
-              type="button"
-              onClick={() => update('comoConociste', c.value)}
-              className={`px-5 py-2.5 border rounded-full text-sm transition-all duration-200 ${
-                data.comoConociste === c.value
-                  ? 'border-blue-500 bg-blue-50 text-blue-700 font-medium'
-                  : 'border-gray-200 bg-white text-gray-600 hover:border-gray-400'
-              }`}
-            >
-              {c.label}
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cómo nos conociste?</p>
+        <div className="space-y-2">
+          {['Google', 'Instagram', 'Facebook', 'Recomendación', 'Otro'].map(c => (
+            <button key={c} onClick={() => onChange('comoNosConocio', c)}
+              className={`w-full flex items-center gap-3 p-3 border text-left text-sm transition-all
+                ${comoNosConocio === c ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
+              <span className={`w-4 h-4 rounded-full border-2 flex-shrink-0 ${comoNosConocio === c ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`} />
+              {c}
             </button>
           ))}
         </div>
       </div>
     </div>
-  );
+  )
 }
