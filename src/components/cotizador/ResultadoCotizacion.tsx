@@ -13,7 +13,7 @@ interface Props {
 export default function ResultadoCotizacion({ nombre, email, total, tiempoEstimado, pdfUrl, presupuestoNumber, onReset }: Props) {
   const fmt = (n: number) => `$${n.toLocaleString('es-AR')} ARS`
   const waText = encodeURIComponent(`Hola! Acabo de generar el presupuesto ${presupuestoNumber} en vmstudioweb.online y quiero más información`)
-  const waUrl = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '5491112345678'}?text=${waText}`
+  const waUrl = `https://wa.me/541124508191?text=${waText}`
   const pdfFullUrl = pdfUrl.startsWith('http') ? pdfUrl : `https://app.vmstudioweb.online${pdfUrl}`
 
   return (

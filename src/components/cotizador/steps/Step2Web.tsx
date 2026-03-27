@@ -74,7 +74,7 @@ export default function Step2Web({ webTipo, webPaginas, webContacto, webExtras, 
         <div className="flex gap-3">
           {CONTACTO.map(c => (
             <button key={c} onClick={() => toggleArr('webContacto', webContacto, c)}
-              className={`flex-1 py-2.5 text-sm border transition-all capitalize
+              className={`flex-1 py-2.5 text-sm border transition-all
                 ${webContacto.includes(c) ? 'border-blue-600 bg-blue-50 text-blue-700 font-medium' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}>
               {c === 'whatsapp' ? 'WhatsApp' : 'Formulario de contacto'}
             </button>

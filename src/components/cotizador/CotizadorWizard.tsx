@@ -134,13 +134,9 @@ export default function CotizadorWizard() {
     setIsSubmitting(true)
     try {
       const API = process.env.NEXT_PUBLIC_APP_API_URL ?? 'https://app.vmstudioweb.online'
-      const token = typeof window !== 'undefined' ? localStorage.getItem('vm_token') : null
       const res = await fetch(`${API}/api/cotizador/submit`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           servicios: form.servicios,
           web: {
