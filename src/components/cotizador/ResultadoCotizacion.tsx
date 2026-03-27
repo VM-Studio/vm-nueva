@@ -19,7 +19,7 @@ export default function ResultadoCotizacion({ nombre, email, total, tiempoEstima
   return (
     <div className="bg-white p-6 sm:p-8 shadow-sm text-center">
       <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
-        <span className="text-3xl">✅</span>
+        <span className="text-3xl text-green-600 font-light">✓</span>
       </div>
       <h2 className="text-2xl font-light text-gray-900 mb-1">¡Tu presupuesto está listo!</h2>
       <p className="text-sm text-gray-500 mb-8">Hola <strong>{nombre}</strong>, preparamos una estimación para tu proyecto.</p>
@@ -30,26 +30,26 @@ export default function ResultadoCotizacion({ nombre, email, total, tiempoEstima
       </div>
 
       <div className="bg-gray-50 p-4 mb-6 text-left">
-        <p className="text-sm text-gray-600">⏱️ <strong>Tiempo estimado:</strong> {tiempoEstimado}</p>
+        <p className="text-sm text-gray-600"><strong>Tiempo estimado:</strong> {tiempoEstimado}</p>
       </div>
 
       <p className="text-xs text-gray-400 mb-6">
-        📧 Te enviamos el presupuesto a <strong>{email}</strong>. Revisá también tu carpeta de spam.
+        Te enviamos el presupuesto a <strong>{email}</strong>. Revisá también tu carpeta de spam.
       </p>
 
       <div className="space-y-3">
         <a href={pdfFullUrl} target="_blank" rel="noopener noreferrer"
           className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-widest uppercase hover:opacity-90 transition-opacity">
-          📄 DESCARGAR PRESUPUESTO PDF
+          DESCARGAR PRESUPUESTO PDF
         </a>
         <a href={waUrl} target="_blank" rel="noopener noreferrer"
           className="w-full flex items-center justify-center gap-2 py-3.5 border border-gray-300 text-gray-700 text-sm font-medium tracking-widest uppercase hover:bg-gray-50 transition-colors">
-          💬 HABLAR POR WHATSAPP
+          HABLAR POR WHATSAPP
         </a>
       </div>
 
       <p className="text-xs text-gray-400 mt-6">
-        Nuestro equipo te contactará en menos de 24 horas hábiles 🚀
+        Nuestro equipo te contactará en menos de 24 horas hábiles.
       </p>
 
       <button onClick={onReset} className="mt-4 text-xs text-gray-400 hover:text-gray-600 underline transition-colors">

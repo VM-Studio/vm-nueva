@@ -1,11 +1,11 @@
 'use client'
 
 const SERVICIOS = [
-  { id: 'web', icon: '🌐', label: 'Desarrollo Web' },
-  { id: 'app', icon: '📱', label: 'Aplicación' },
-  { id: 'google_ads', icon: '📢', label: 'Google Ads' },
-  { id: 'meta_ads', icon: '📣', label: 'Meta Ads' },
-  { id: 'combo_ads', icon: '🚀', label: 'Google Ads + Meta Ads', badge: 'Ahorro incluido' },
+  { id: 'web', label: 'Desarrollo Web' },
+  { id: 'app', label: 'Aplicación' },
+  { id: 'google_ads', label: 'Google Ads' },
+  { id: 'meta_ads', label: 'Meta Ads' },
+  { id: 'combo_ads', label: 'Google Ads + Meta Ads', badge: 'Ahorro incluido' },
 ]
 
 interface Props {
@@ -49,7 +49,6 @@ export default function Step1Servicio({ selected, onChange }: Props) {
                 ? 'border-blue-600 bg-blue-50'
                 : 'border-gray-200 bg-white hover:border-gray-300'}`}
           >
-            <span className="text-2xl">{s.icon}</span>
             <span className="flex-1 text-sm font-medium text-gray-800">{s.label}</span>
             {s.badge && (
               <span className="text-xs bg-blue-600 text-white px-2 py-0.5">{s.badge}</span>
