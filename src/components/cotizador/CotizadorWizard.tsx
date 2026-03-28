@@ -112,13 +112,19 @@ export default function CotizadorWizard() {
       return
     }
     const nextIdx = currentIdx + 1
-    if (nextIdx < activeSteps.length) setCurrentStep(activeSteps[nextIdx])
+    if (nextIdx < activeSteps.length) {
+      setCurrentStep(activeSteps[nextIdx])
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   const handleBack = () => {
     setError('')
     const prevIdx = currentIdx - 1
-    if (prevIdx >= 0) setCurrentStep(activeSteps[prevIdx])
+    if (prevIdx >= 0) {
+      setCurrentStep(activeSteps[prevIdx])
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   const handleSubmit = async () => {
