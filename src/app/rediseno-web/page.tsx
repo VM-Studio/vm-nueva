@@ -1,7 +1,18 @@
-'use client'
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Rediseño Web Profesional | VM Studio',
+  description: 'Renovamos tu página web para convertir más visitas en clientes. Diseño moderno, rápido y optimizado para Google.',
+  alternates: { canonical: 'https://vmstudioweb.online/rediseno-web' },
+  openGraph: {
+    title: 'Rediseño Web Profesional | VM Studio',
+    description: 'Renovamos tu página web para convertir más visitas en clientes.',
+    url: 'https://vmstudioweb.online/rediseno-web',
+  },
+};
 
 const Software = "/web.gif";
 const Google = "/google.gif";

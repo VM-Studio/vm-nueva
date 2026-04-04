@@ -1,7 +1,18 @@
-'use client'
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Desarrollo Web Buenos Aires | VM Studio',
+  description: 'Desarrollo de páginas web profesionales en Buenos Aires. Diseño, programación y SEO para que tu empresa consiga clientes nuevos desde Google.',
+  alternates: { canonical: 'https://vmstudioweb.online/desarrollo-web-buenos-aires' },
+  openGraph: {
+    title: 'Desarrollo Web Buenos Aires | VM Studio',
+    description: 'Páginas web profesionales en Buenos Aires para conseguir clientes desde Google.',
+    url: 'https://vmstudioweb.online/desarrollo-web-buenos-aires',
+  },
+};
 
 const Software = "/web.gif";
 const Google = "/google.gif";

@@ -1,7 +1,18 @@
-'use client'
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Páginas Web para Empresas | VM Studio',
+  description: 'Diseño y desarrollo de páginas web profesionales para empresas en Argentina. Convertimos visitas en clientes con webs de alto rendimiento.',
+  alternates: { canonical: 'https://vmstudioweb.online/paginas-web' },
+  openGraph: {
+    title: 'Páginas Web para Empresas | VM Studio',
+    description: 'Diseño y desarrollo de páginas web profesionales para empresas en Argentina.',
+    url: 'https://vmstudioweb.online/paginas-web',
+  },
+};
 
 const Software = "/web.gif";
 const Google = "/google.gif";

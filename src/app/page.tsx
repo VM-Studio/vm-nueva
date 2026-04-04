@@ -1,5 +1,7 @@
+import dynamic from 'next/dynamic';
 import MainContent from '../components/MainContent';
-import ScrollProgress from '../components/ScrollProgress';
+
+const ScrollProgress = dynamic(() => import('../components/ScrollProgress'), { ssr: false });
 
 export default function Home() {
   return (

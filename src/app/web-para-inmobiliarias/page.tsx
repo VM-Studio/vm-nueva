@@ -1,7 +1,18 @@
-'use client'
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Web para Inmobiliarias | VM Studio',
+  description: 'Páginas web para inmobiliarias en Argentina. Atraé más compradores e inquilinos con una web optimizada para Google.',
+  alternates: { canonical: 'https://vmstudioweb.online/web-para-inmobiliarias' },
+  openGraph: {
+    title: 'Web para Inmobiliarias | VM Studio',
+    description: 'Atraé más compradores e inquilinos con una web inmobiliaria optimizada.',
+    url: 'https://vmstudioweb.online/web-para-inmobiliarias',
+  },
+};
 
 const Software = "/web.gif";
 const Google = "/google.gif";

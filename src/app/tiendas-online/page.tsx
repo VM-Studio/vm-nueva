@@ -1,7 +1,18 @@
-'use client'
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Tiendas Online Profesionales | VM Studio',
+  description: 'Creamos tu tienda online para vender más en Argentina. E-commerce optimizado para Google y conversión de ventas.',
+  alternates: { canonical: 'https://vmstudioweb.online/tiendas-online' },
+  openGraph: {
+    title: 'Tiendas Online Profesionales | VM Studio',
+    description: 'E-commerce optimizado para vender más en Argentina.',
+    url: 'https://vmstudioweb.online/tiendas-online',
+  },
+};
 
 const Software = "/web.gif";
 const Google = "/google.gif";

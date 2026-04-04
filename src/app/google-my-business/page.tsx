@@ -1,7 +1,18 @@
-'use client'
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Google My Business Argentina | VM Studio',
+  description: 'Optimizamos tu perfil de Google My Business para que aparezcas en los primeros resultados locales y atraigas más clientes.',
+  alternates: { canonical: 'https://vmstudioweb.online/google-my-business' },
+  openGraph: {
+    title: 'Google My Business Argentina | VM Studio',
+    description: 'Aparecé primero en Google Maps y Google Search con tu perfil optimizado.',
+    url: 'https://vmstudioweb.online/google-my-business',
+  },
+};
 
 const Software = "/web.gif";
 const Google = "/google.gif";

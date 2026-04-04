@@ -1,7 +1,18 @@
-'use client'
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Web para Profesionales | VM Studio',
+  description: 'Páginas web para médicos, abogados, contadores y otros profesionales en Argentina. Construí tu presencia online y conseguí más clientes.',
+  alternates: { canonical: 'https://vmstudioweb.online/web-para-profesionales' },
+  openGraph: {
+    title: 'Web para Profesionales | VM Studio',
+    description: 'Construí tu presencia online y conseguí más clientes con una web profesional.',
+    url: 'https://vmstudioweb.online/web-para-profesionales',
+  },
+};
 
 const Software = "/web.gif";
 const Google = "/google.gif";

@@ -1,7 +1,18 @@
-'use client'
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Marketing Digital para Empresas | VM Studio',
+  description: 'Agencia de marketing digital en Argentina. Google Ads, SEO e inteligencia artificial para generar clientes nuevos garantizado en 30 días.',
+  alternates: { canonical: 'https://vmstudioweb.online/marketing-digital' },
+  openGraph: {
+    title: 'Marketing Digital para Empresas | VM Studio',
+    description: 'Google Ads, SEO e IA para generar clientes nuevos garantizado en 30 días.',
+    url: 'https://vmstudioweb.online/marketing-digital',
+  },
+};
 
 const GoogleAds = "/GOOGLEADS.gif";
 const SEO = "/SEO.gif";

@@ -1,7 +1,18 @@
-'use client'
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Web para Restaurantes | VM Studio',
+  description: 'Páginas web para restaurantes en Argentina. Conseguí más reservas y pedidos online con una web profesional optimizada para Google.',
+  alternates: { canonical: 'https://vmstudioweb.online/web-para-restaurantes' },
+  openGraph: {
+    title: 'Web para Restaurantes | VM Studio',
+    description: 'Conseguí más reservas y pedidos online con una web para restaurante optimizada.',
+    url: 'https://vmstudioweb.online/web-para-restaurantes',
+  },
+};
 
 const Software = "/web.gif";
 const Google = "/google.gif";
