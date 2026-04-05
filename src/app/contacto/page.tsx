@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Footer from "../../components/Footer";
 
 type FormState = {
@@ -12,6 +13,7 @@ type FormState = {
 };
 
 export default function ContactoPage() {
+  const router = useRouter();
   const [form, setForm] = useState<FormState>({
     name: "",
     company: "",
@@ -37,7 +39,7 @@ export default function ContactoPage() {
         body: JSON.stringify(form),
       });
       if (res.ok) {
-        setStatus("ok");
+        router.push('/agradecimiento');
       } else {
         setStatus("error");
       }
@@ -197,11 +199,6 @@ export default function ContactoPage() {
                 {status === "sending" ? "ENVIANDO..." : "ENVIAR CONSULTA"}
               </button>
 
-              {status === "ok" && (
-                <span className="text-sm text-green-600 font-medium text-center sm:text-left">
-                  ✓ Recibimos tu consulta. Te contactamos pronto.
-                </span>
-              )}
               {status === "error" && (
                 <span className="text-sm text-red-500 font-medium text-center sm:text-left">
                   Hubo un error al enviar. Intentá de nuevo o escribinos por WhatsApp.
