@@ -181,7 +181,7 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/" className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block">
+                <Link href="/terminos-y-condiciones" className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block">
                   Términos
                 </Link>
               </li>

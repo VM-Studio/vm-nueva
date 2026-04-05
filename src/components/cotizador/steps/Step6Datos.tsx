@@ -82,7 +82,11 @@ export default function Step6Datos({ nombre, empresa, email, whatsapp, preferenc
         {isSubmitting ? 'Calculando...' : 'CALCULAR MI PRESUPUESTO →'}
       </button>
       <p className="text-xs text-gray-400 text-center">
-        Al enviar aceptás nuestra{' '}
+        Al enviar aceptás nuestros{' '}
+        <Link href="/terminos-y-condiciones" className="underline hover:text-gray-600 transition-colors">
+          Términos y Condiciones
+        </Link>
+        {' '}y nuestra{' '}
         <Link href="/politica-de-privacidad" className="underline hover:text-gray-600 transition-colors">
           Política de Privacidad
         </Link>

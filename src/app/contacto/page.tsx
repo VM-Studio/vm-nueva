@@ -209,7 +209,11 @@ export default function ContactoPage() {
 
             {/* Aviso de privacidad */}
             <p className="text-xs text-gray-400 font-light">
-              Al enviar este formulario aceptás nuestra{' '}
+              Al enviar este formulario aceptás nuestros{' '}
+              <Link href="/terminos-y-condiciones" className="underline hover:text-gray-600 transition-colors">
+                Términos y Condiciones
+              </Link>
+              {' '}y nuestra{' '}
               <Link href="/politica-de-privacidad" className="underline hover:text-gray-600 transition-colors">
                 Política de Privacidad
               </Link>
