@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 interface Props {
   nombre: string
   empresa: string
@@ -80,7 +82,11 @@ export default function Step6Datos({ nombre, empresa, email, whatsapp, preferenc
         {isSubmitting ? 'Calculando...' : 'CALCULAR MI PRESUPUESTO →'}
       </button>
       <p className="text-xs text-gray-400 text-center">
-        Tu información es confidencial y solo será utilizada para preparar tu propuesta.
+        Al enviar aceptás nuestra{' '}
+        <Link href="/politica-de-privacidad" className="underline hover:text-gray-600 transition-colors">
+          Política de Privacidad
+        </Link>
+        . Tu información es confidencial y solo será utilizada para preparar tu propuesta.
       </p>
     </div>
   )

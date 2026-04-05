@@ -176,7 +176,7 @@ const Footer: React.FC = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/" className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block">
+                <Link href="/politica-de-privacidad" className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block">
                   Privacidad
                 </Link>
               </li>

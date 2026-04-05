@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Footer from "../../components/Footer";
 
 type FormState = {
@@ -205,6 +206,15 @@ export default function ContactoPage() {
                 </span>
               )}
             </div>
+
+            {/* Aviso de privacidad */}
+            <p className="text-xs text-gray-400 font-light">
+              Al enviar este formulario aceptás nuestra{' '}
+              <Link href="/politica-de-privacidad" className="underline hover:text-gray-600 transition-colors">
+                Política de Privacidad
+              </Link>
+              .
+            </p>
 
           </form>
 
