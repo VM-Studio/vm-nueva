@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import MetaPixel from '../components/MetaPixel';
+import GTMPageView from '../components/GTMPageView';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -79,13 +80,17 @@ export default function RootLayout({
   return (
     <html lang="es-AR" className={inter.variable} suppressHydrationWarning>
       <head>
+        {/* Google Tag Manager — dataLayer init (must run before GTM script) */}
+        <Script id="gtm-datalayer" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];`}
+        </Script>
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NTXMFKXN');`}
+})(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');`}
         </Script>
         {/* End Google Tag Manager */}
 
@@ -212,13 +217,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-NTXMFKXN"
+            src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
+
+        {/* GTM SPA page view tracker — notifica a GTM en cada cambio de ruta */}
+        <GTMPageView />
 
         {/* Meta Pixel */}
         <MetaPixel pixelId={META_PIXEL_ID} />
