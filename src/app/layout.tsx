@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Script from 'next/script';
+import { Suspense } from 'react';
 import Navbar from '../components/Navbar';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import MetaPixel from '../components/MetaPixel';
 import GTMPageView from '../components/GTMPageView';
 import CookieBanner from '../components/CookieBanner';
 import WhatsAppButton from '../components/WhatsAppButton';
+import UTMTracker from '../components/UTMTracker';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -243,6 +245,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         {/* GTM SPA page view tracker — notifica a GTM en cada cambio de ruta */}
         <GTMPageView />
+
+        {/* UTM parameter capture for campaign tracking */}
+        <Suspense fallback={null}>
+          <UTMTracker />
+        </Suspense>
 
         {/* Meta Pixel */}
         <MetaPixel pixelId={META_PIXEL_ID} />
