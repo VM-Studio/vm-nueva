@@ -1,8 +1,12 @@
+import type { Metadata } from 'next'
 import CotizadorWizard from '@/components/cotizador/CotizadorWizard'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Cotizá tu proyecto digital | VM Studio',
   description: 'Calculá el precio estimado de tu página web, app o campaña publicitaria. Sin registrarte, sin compromiso.',
+  alternates: {
+    canonical: 'https://vmstudioweb.online/cotizador',
+  },
 }
 
 export default function CotizadorPage() {

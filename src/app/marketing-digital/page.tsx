@@ -1,18 +1,6 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
-
-export const metadata: Metadata = {
-  title: 'Marketing Digital para Empresas | VM Studio',
-  description: 'Agencia de marketing digital en Argentina. Google Ads, SEO e inteligencia artificial para generar clientes nuevos garantizado en 30 días.',
-  alternates: { canonical: 'https://vmstudioweb.online/marketing-digital' },
-  openGraph: {
-    title: 'Marketing Digital para Empresas | VM Studio',
-    description: 'Google Ads, SEO e IA para generar clientes nuevos garantizado en 30 días.',
-    url: 'https://vmstudioweb.online/marketing-digital',
-  },
-};
 
 const GoogleAds = "/GOOGLEADS.gif";
 const SEO = "/SEO.gif";
@@ -101,7 +89,7 @@ export default function LandingMarketingDigital() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
+                <Link
                   href="/cotizador"
                   className="
                     group relative px-6 sm:px-8 py-4
@@ -115,7 +103,7 @@ export default function LandingMarketingDigital() {
                 >
                   <span className="relative z-10">PEDIR CONSULTA GRATIS</span>
                   <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                </a>
+                </Link>
                 <Link
                   href="/casos-de-estudio"
                   className="
@@ -196,12 +184,12 @@ export default function LandingMarketingDigital() {
               clientes nuevos
             </span>
           </h2>
-          <a
+          <Link
             href="/cotizador"
             className="inline-block px-8 sm:px-12 py-4 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-[0.98]"
           >
             PEDIR CONSULTA GRATIS
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -321,12 +309,12 @@ export default function LandingMarketingDigital() {
               Hablemos 30 minutos sobre tu negocio y te mostramos exactamente cómo podemos generarte clientes nuevos este mes.
               <span className="block mt-2">Sin compromiso.</span>
             </p>
-            <a
+            <Link
               href="/cotizador"
               className="inline-block w-full sm:w-auto px-8 sm:px-12 py-4 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-[0.98]"
             >
               PEDIR CONSULTA GRATIS
-            </a>
+            </Link>
           </div>
         </div>
       </section>

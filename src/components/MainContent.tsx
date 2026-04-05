@@ -103,7 +103,7 @@ const MainContent: React.FC = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <a 
+                <Link 
                   href="/cotizador"
                   className="
                     group relative px-6 sm:px-8 py-4 
@@ -117,7 +117,7 @@ const MainContent: React.FC = () => {
                 >
                   <span className="relative z-10">PEDIR MAQUETA WEB GRATIS</span>
                   <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                </a>
+                </Link>
                 
                 <Link 
                   href="/casos-de-estudio"
@@ -236,7 +236,7 @@ const MainContent: React.FC = () => {
               <span className="block mt-1">Sin registrarte, sin compromiso.</span>
             </p>
             <div className="mt-8">
-              <a
+              <Link
                 href="/cotizador"
                 className="
                   inline-block px-10 py-4
@@ -248,7 +248,7 @@ const MainContent: React.FC = () => {
                 "
               >
                 CALCULAR AHORA →
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -447,7 +447,7 @@ const MainContent: React.FC = () => {
               <span className="block mt-2">Te mostramos exactamente cómo podemos hacer crecer a tu empresa.</span>
             </p>
             
-            <a
+            <Link
               href="/cotizador"
               className="
                 inline-block px-8 sm:px-12 py-4
@@ -460,7 +460,7 @@ const MainContent: React.FC = () => {
               "
             >
               PEDIR MAQUETA WEB GRATIS
-            </a>
+            </Link>
           </div>
         </div>
       </section>

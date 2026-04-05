@@ -1,18 +1,6 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../../components/Footer';
-
-export const metadata: Metadata = {
-  title: 'Google My Business Argentina | VM Studio',
-  description: 'Optimizamos tu perfil de Google My Business para que aparezcas en los primeros resultados locales y atraigas más clientes.',
-  alternates: { canonical: 'https://vmstudioweb.online/google-my-business' },
-  openGraph: {
-    title: 'Google My Business Argentina | VM Studio',
-    description: 'Aparecé primero en Google Maps y Google Search con tu perfil optimizado.',
-    url: 'https://vmstudioweb.online/google-my-business',
-  },
-};
 
 const Software = "/web.gif";
 const Google = "/google.gif";
@@ -101,7 +89,7 @@ export default function LandingGoogleMyBusiness() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
+                <Link
                   href="/cotizador"
                   className="
                     group relative px-6 sm:px-8 py-4
@@ -115,7 +103,7 @@ export default function LandingGoogleMyBusiness() {
                 >
                   <span className="relative z-10">PEDIR AUDITORÍA GRATIS</span>
                   <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                </a>
+                </Link>
                 <Link
                   href="/casos-de-estudio"
                   className="
@@ -196,12 +184,12 @@ export default function LandingGoogleMyBusiness() {
               Google Maps
             </span>
           </h2>
-          <a
+          <Link
             href="/cotizador"
             className="inline-block px-8 sm:px-12 py-4 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-[0.98]"
           >
             PEDIR AUDITORÍA GRATIS
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -321,12 +309,12 @@ export default function LandingGoogleMyBusiness() {
               Pedí la auditoría gratis de tu ficha y en 48 horas te decimos exactamente qué hay que mejorar para aparecer primero.
               <span className="block mt-2">Sin compromiso. Sin costo.</span>
             </p>
-            <a
+            <Link
               href="/cotizador"
               className="inline-block w-full sm:w-auto px-8 sm:px-12 py-4 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-[0.98]"
             >
               PEDIR AUDITORÍA GRATIS
-            </a>
+            </Link>
           </div>
         </div>
       </section>
