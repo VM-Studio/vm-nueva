@@ -102,7 +102,7 @@ export default function LandingWebParaProfesionales() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="/contacto"
+                  href="/cotizador"
                   className="
                     group relative px-6 sm:px-8 py-4
                     bg-gradient-to-r from-gray-900 to-blue-700
@@ -113,7 +113,7 @@ export default function LandingWebParaProfesionales() {
                     active:scale-[0.98]
                   "
                 >
-                  <span className="relative z-10">PEDIR MAQUETA WEB GRATIS</span>
+                  <span className="relative z-10">PEDIR MI WEB PROFESIONAL</span>
                   <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                 </a>
                 <Link
@@ -183,6 +183,25 @@ export default function LandingWebParaProfesionales() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Mid-page CTA */}
+      <section className="py-12 sm:py-16 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-[11px] font-medium tracking-[0.2em] text-gray-500 mb-4">[ ¿LISTO PARA EMPEZAR? ]</p>
+          <h2 className="text-2xl sm:text-3xl font-light tracking-tight text-black mb-6">
+            Conseguí más pacientes{' '}
+            <span className="font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">
+              y clientes
+            </span>
+          </h2>
+          <a
+            href="/cotizador"
+            className="inline-block px-8 sm:px-12 py-4 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-[0.98]"
+          >
+            PEDIR MI WEB PROFESIONAL
+          </a>
         </div>
       </section>
 
@@ -303,10 +322,10 @@ export default function LandingWebParaProfesionales() {
               <span className="block mt-2">Sin compromiso. Sin costo.</span>
             </p>
             <a
-              href="/contacto"
+              href="/cotizador"
               className="inline-block w-full sm:w-auto px-8 sm:px-12 py-4 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-[0.98]"
             >
-              PEDIR MAQUETA WEB GRATIS
+              PEDIR MI WEB PROFESIONAL
             </a>
           </div>
         </div>
