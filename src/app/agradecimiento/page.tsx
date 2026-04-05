@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Footer from '../../components/Footer'
+import GoogleAdsConversion from '../../components/GoogleAdsConversion'
 
 export const metadata: Metadata = {
   title: 'Gracias por contactarnos — VM Studio',
@@ -12,6 +13,8 @@ export const metadata: Metadata = {
 export default function AgradecimientoPage() {
   return (
     <>
+      {/* Google Ads conversion event — fires on mount, no visible UI */}
+      <GoogleAdsConversion />
       <section className="relative min-h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50" />
         <div
