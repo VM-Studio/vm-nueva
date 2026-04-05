@@ -1,5 +1,23 @@
 'use client'
 
+declare global {
+  interface Window {
+    gtag: (...args: unknown[]) => void;
+  }
+}
+
+function trackWhatsApp() {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', 'whatsapp_click', {
+      event_category: 'contacto',
+      event_label: 'whatsapp',
+    });
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-18011718561',
+    });
+  }
+}
+
 interface Props {
   nombre: string
   email: string
@@ -42,7 +60,7 @@ export default function ResultadoCotizacion({ nombre, email, total, tiempoEstima
           className="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-widest uppercase hover:opacity-90 transition-opacity">
           DESCARGAR PRESUPUESTO PDF
         </a>
-        <a href={waUrl} target="_blank" rel="noopener noreferrer"
+        <a href={waUrl} target="_blank" rel="noopener noreferrer" onClick={trackWhatsApp}
           className="w-full flex items-center justify-center gap-2 py-3.5 border border-gray-300 text-gray-700 text-sm font-medium tracking-widest uppercase hover:bg-gray-50 transition-colors">
           HABLAR POR WHATSAPP
         </a>

@@ -2,6 +2,24 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+declare global {
+  interface Window {
+    gtag: (...args: unknown[]) => void;
+  }
+}
+
+function trackWhatsApp() {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', 'whatsapp_click', {
+      event_category: 'contacto',
+      event_label: 'whatsapp',
+    });
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-18011718561',
+    });
+  }
+}
+
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   
@@ -103,6 +121,7 @@ const Footer: React.FC = () => {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={item.href.includes('wa.me') ? trackWhatsApp : undefined}
                       className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block"
                     >
                       {item.name}
@@ -131,6 +150,7 @@ const Footer: React.FC = () => {
                   href="https://wa.me/541124508191"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={trackWhatsApp}
                   className="text-sm text-gray-600 hover:text-blue-600 transition-colors hover:translate-x-1 inline-block"
                 >
                   WhatsApp

@@ -4,6 +4,24 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Footer from "../../components/Footer";
 
+declare global {
+  interface Window {
+    gtag: (...args: unknown[]) => void;
+  }
+}
+
+function trackWhatsApp() {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', 'whatsapp_click', {
+      event_category: 'contacto',
+      event_label: 'whatsapp',
+    });
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-18011718561',
+    });
+  }
+}
+
 type FormState = {
   name: string;
   company: string;
@@ -230,6 +248,7 @@ export default function ContactoPage() {
                 href="https://wa.me/541124508191"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={trackWhatsApp}
                 className="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors"
               >
                 <span className="text-green-500">●</span> WhatsApp — 11 2450-8191

@@ -5,6 +5,24 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Footer from '../../components/Footer';
 
+declare global {
+  interface Window {
+    gtag: (...args: unknown[]) => void;
+  }
+}
+
+function trackWhatsApp() {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', 'whatsapp_click', {
+      event_category: 'contacto',
+      event_label: 'whatsapp',
+    });
+    window.gtag('event', 'conversion', {
+      send_to: 'AW-18011718561',
+    });
+  }
+}
+
 const ETICKETPRO = "/eticketproo.gif";
 const Yesica = "/yesica-oviedo.gif";
 const AJR = "/ajr.gif";
@@ -301,6 +319,7 @@ export default function CaseStudiesPage() {
               href="https://wa.me/541124508191"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackWhatsApp}
               className="
                 inline-block px-8 py-4
                 bg-gradient-to-r from-gray-900 to-blue-700
