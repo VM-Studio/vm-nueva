@@ -50,7 +50,7 @@ const AnimatedButton: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
   return (
     <motion.button
       onClick={scrollToTop}
-      className="fixed bottom-6 left-6 h-10 w-10 rounded-full bg-gray-900 border border-gray-700 shadow-lg z-40 flex items-center justify-center text-white hover:bg-gray-800 transition-colors duration-300"
+      className="fixed bottom-6 left-6 h-11 w-11 rounded-full bg-gray-900 border border-gray-700 shadow-lg z-40 flex items-center justify-center text-white hover:bg-gray-800 transition-colors duration-300"
       initial={{ opacity: 0, y: 20 }}
       animate={{ 
         opacity: isVisible ? 1 : 0,

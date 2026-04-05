@@ -84,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
               {/* Hamburger Menu */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="relative z-10 w-8 h-8 flex flex-col justify-center items-center"
+                className="relative z-10 min-w-[44px] min-h-[44px] flex flex-col justify-center items-center"
                 aria-label="Toggle mobile menu"
               >
                 <span 
@@ -129,7 +129,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
                         setIsMobileMenuOpen(false);
                       }
                     }}
-                    className="text-sm font-medium tracking-widest text-gray-600 hover:text-black transition-colors"
+                    className="min-h-[44px] flex items-center text-sm font-medium tracking-widest text-gray-600 hover:text-black transition-colors"
                   >
                     {item.label}
                   </a>

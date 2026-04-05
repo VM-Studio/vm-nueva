@@ -46,7 +46,7 @@ export default function Step5General({ etapaNegocio, tieneWeb, urlWebActual, cua
             placeholder="¿Cuál es tu web?"
             value={urlWebActual}
             onChange={e => onChange('urlWebActual', e.target.value)}
-            className="w-full mt-3 px-4 py-3 border border-gray-200 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white"
+            className="w-full mt-3 px-4 py-3 border border-gray-200 text-base text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white"
           />
         )}
       </div>

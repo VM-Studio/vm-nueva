@@ -25,25 +25,25 @@ export default function Step6Datos({ nombre, empresa, email, whatsapp, preferenc
           <label className="text-xs font-medium text-gray-600 uppercase tracking-wider">NOMBRE COMPLETO *</label>
           <input type="text" value={nombre} onChange={e => onChange('nombre', e.target.value)}
             placeholder="Tu nombre"
-            className="w-full mt-1 px-4 py-3 border border-gray-200 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
+            className="w-full mt-1 px-4 py-3 border border-gray-200 text-base text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
         </div>
         <div>
           <label className="text-xs font-medium text-gray-600 uppercase tracking-wider">EMPRESA / NEGOCIO</label>
           <input type="text" value={empresa} onChange={e => onChange('empresa', e.target.value)}
             placeholder="Nombre de tu empresa (opcional)"
-            className="w-full mt-1 px-4 py-3 border border-gray-200 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
+            className="w-full mt-1 px-4 py-3 border border-gray-200 text-base text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
         </div>
         <div>
           <label className="text-xs font-medium text-gray-600 uppercase tracking-wider">EMAIL *</label>
           <input type="email" value={email} onChange={e => onChange('email', e.target.value)}
             placeholder="tu@email.com"
-            className="w-full mt-1 px-4 py-3 border border-gray-200 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
+            className="w-full mt-1 px-4 py-3 border border-gray-200 text-base text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
         </div>
         <div>
           <label className="text-xs font-medium text-gray-600 uppercase tracking-wider">WHATSAPP *</label>
           <input type="tel" value={whatsapp} onChange={e => onChange('whatsapp', e.target.value)}
             placeholder="+54 9 11 1234-5678"
-            className="w-full mt-1 px-4 py-3 border border-gray-200 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
+            className="w-full mt-1 px-4 py-3 border border-gray-200 text-base text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
         </div>
         <div>
           <label className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2 block">¿CÓMO PREFERÍS QUE TE CONTACTEMOS?</label>
@@ -61,12 +61,12 @@ export default function Step6Datos({ nombre, empresa, email, whatsapp, preferenc
             ))}
           </div>
         </div>
-        <div className="flex items-start gap-3">
-          <button onClick={() => onChange('aceptaContacto', !aceptaContacto)}
-            className={`w-5 h-5 border-2 flex-shrink-0 mt-0.5 flex items-center justify-center transition-all
+        <div className="flex items-start gap-3 min-h-[44px] cursor-pointer" onClick={() => onChange('aceptaContacto', !aceptaContacto)}>
+          <div
+            className={`w-5 h-5 border-2 flex-shrink-0 mt-0.5 flex items-center justify-center transition-all pointer-events-none
               ${aceptaContacto ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`}>
             {aceptaContacto && <span className="text-white text-xs">✓</span>}
-          </button>
+          </div>
           <p className="text-xs text-gray-500">
             Acepto que VM Studio me contacte con información sobre mi presupuesto *
           </p>

@@ -85,7 +85,7 @@ const MainContent: React.FC = () => {
               </div>
 
               {/* Main headline */}
-              <h1 className="text-[2.4rem] sm:text-[clamp(2rem,7vw,4.5rem)] font-light leading-[0.95] tracking-[-0.02em] mb-6 sm:mb-8">
+              <h1 className="text-[clamp(1.8rem,8vw,2.4rem)] sm:text-[clamp(2rem,7vw,4.5rem)] font-light leading-[0.95] tracking-[-0.02em] mb-6 sm:mb-8">
                 <span className=" text-black">Desarrollamos Páginas Web
                 de alto rendimiento para</span> {/*  */}
                 <span className=" font-medium bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent">

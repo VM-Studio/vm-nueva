@@ -48,7 +48,7 @@ export default function ContactoPage() {
   }
 
   const inputClass =
-    "w-full px-4 py-3 bg-white border border-gray-200 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-blue-500 transition-colors duration-200";
+    "w-full px-4 py-3 bg-white border border-gray-200 text-black placeholder-gray-400 text-base focus:outline-none focus:border-blue-500 transition-colors duration-200";
 
   return (
     <>
@@ -140,7 +140,7 @@ export default function ContactoPage() {
                 onChange={(e) => update("notes", e.target.value)}
                 placeholder="Contanos tu idea o necesidad, te respondemos en menos de 24 hs..."
                 rows={5}
-                className="w-full px-4 py-3 bg-white border border-gray-200 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-blue-500 transition-colors duration-200 resize-none min-h-[120px]"
+                className="w-full px-4 py-3 bg-white border border-gray-200 text-black placeholder-gray-400 text-base focus:outline-none focus:border-blue-500 transition-colors duration-200 resize-none min-h-[120px]"
               />
             </div>
 
@@ -153,7 +153,7 @@ export default function ContactoPage() {
                 <button
                   type="button"
                   onClick={() => update("whatsapp", "si")}
-                  className={`px-6 py-2.5 text-sm font-medium tracking-wider border transition-all duration-200 ${
+                  className={`px-6 py-3 text-sm font-medium tracking-wider border transition-all duration-200 min-h-[44px] ${
                     form.whatsapp === "si"
                       ? "bg-gray-900 text-white border-gray-900"
                       : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
@@ -164,7 +164,7 @@ export default function ContactoPage() {
                 <button
                   type="button"
                   onClick={() => update("whatsapp", "no")}
-                  className={`px-6 py-2.5 text-sm font-medium tracking-wider border transition-all duration-200 ${
+                  className={`px-6 py-3 text-sm font-medium tracking-wider border transition-all duration-200 min-h-[44px] ${
                     form.whatsapp === "no"
                       ? "bg-gray-900 text-white border-gray-900"
                       : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
