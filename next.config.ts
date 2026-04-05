@@ -4,6 +4,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/:path*',
+        has: [{ type: 'header', key: 'x-forwarded-proto', value: 'http' }],
+        destination: 'https://vmstudioweb.online/:path*',
+        permanent: true,
+      },
+      {
         source: '/contactanos',
         destination: '/contacto',
         permanent: true,
@@ -36,6 +42,15 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+        ],
+      },
       {
         source: '/_next/static/(.*)',
         headers: [
