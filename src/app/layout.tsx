@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import MetaPixel from '../components/MetaPixel';
 import GTMPageView from '../components/GTMPageView';
+import CookieBanner from '../components/CookieBanner';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -305,6 +306,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             })
           }}
         />
+        {/* Cookie Consent Banner */}
+        <CookieBanner />
       </body>
     </html>
   );
