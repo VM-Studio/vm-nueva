@@ -66,6 +66,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://vmstudioweb.online',
   },
+  verification: {
+    other: {
+      'facebook-domain-verification': ['qnxipw6xcwrytnke3gr9js3oc7d6ow'],
+    },
+  },
 };
 
 export const viewport = {
