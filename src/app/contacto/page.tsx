@@ -7,6 +7,8 @@ import Footer from "../../components/Footer";
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    fbq: any;
   }
 }
 
@@ -19,6 +21,9 @@ function trackWhatsApp() {
     window.gtag('event', 'conversion', {
       send_to: 'AW-18011718561',
     });
+  }
+  if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
+    window.fbq('track', 'Contact');
   }
 }
 

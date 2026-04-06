@@ -20,9 +20,7 @@ const inter = Inter({
 // ============================================
 // CONFIGURACIÓN DEL META PIXEL
 // ============================================
-// Reemplazá 'YOUR_PIXEL_ID_HERE' con tu ID del Meta Pixel
-// Ejemplo: const META_PIXEL_ID = '1234567890123456';
-const META_PIXEL_ID = 'YOUR_PIXEL_ID_HERE';
+const META_PIXEL_ID = '34667264706250799';
 // ============================================
 
 export const metadata: Metadata = {
