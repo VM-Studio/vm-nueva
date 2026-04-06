@@ -1,11 +1,32 @@
 'use client'
 
 const SERVICIOS = [
-  { id: 'web', label: 'Desarrollo Web' },
-  { id: 'app', label: 'Aplicación' },
-  { id: 'google_ads', label: 'Google Ads' },
-  { id: 'meta_ads', label: 'Meta Ads' },
-  { id: 'combo_ads', label: 'Google Ads + Meta Ads', badge: 'Ahorro incluido' },
+  {
+    id: 'web',
+    label: 'Quiero una página web',
+    desc: 'Para mostrar tu negocio, vender productos o conseguir clientes por internet',
+  },
+  {
+    id: 'app',
+    label: 'Quiero una aplicación',
+    desc: 'Una app que tus clientes puedan descargar o usar desde el celular',
+  },
+  {
+    id: 'google_ads',
+    label: 'Quiero aparecer en Google cuando me buscan',
+    desc: 'Publicidad paga en Google para que tus clientes te encuentren antes que a la competencia',
+  },
+  {
+    id: 'meta_ads',
+    label: 'Quiero publicidad en Instagram y Facebook',
+    desc: 'Anuncios en redes sociales para llegar a más personas y generar consultas',
+  },
+  {
+    id: 'combo_ads',
+    label: 'Quiero publicidad en Google + Redes Sociales',
+    desc: 'La combinación más completa: aparecés en Google y en Instagram/Facebook al mismo tiempo',
+    badge: 'Más popular',
+  },
 ]
 
 interface Props {
@@ -37,24 +58,25 @@ export default function Step1Servicio({ selected, onChange }: Props) {
   return (
     <div>
       <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Paso 1</p>
-      <h2 className="text-xl font-light text-gray-900 mb-6">¿Qué necesitás para tu negocio?</h2>
-      <p className="text-xs text-gray-400 mb-6">Podés seleccionar más de una opción</p>
+      <h2 className="text-xl font-light text-gray-900 mb-2">¿Qué necesitás para tu negocio?</h2>
+      <p className="text-xs text-gray-400 mb-6">Podés elegir más de una opción</p>
       <div className="grid grid-cols-1 gap-3">
         {SERVICIOS.map(s => (
           <button
             key={s.id}
             onClick={() => toggle(s.id)}
-            className={`flex items-center gap-4 p-4 border text-left transition-all
+            className={`flex items-start gap-4 p-4 border text-left transition-all
               ${selected.includes(s.id)
                 ? 'border-blue-600 bg-blue-50'
                 : 'border-gray-200 bg-white hover:border-gray-300'}`}
           >
-            <span className="flex-1 text-sm font-medium text-gray-800">{s.label}</span>
+            <span className={`mt-0.5 w-4 h-4 flex-shrink-0 border-2 ${selected.includes(s.id) ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`} />
+            <span className="flex-1">
+              <span className="block text-sm font-medium text-gray-800">{s.label}</span>
+              <span className="block text-xs text-gray-400 mt-0.5">{s.desc}</span>
+            </span>
             {s.badge && (
-              <span className="text-xs bg-blue-600 text-white px-2 py-0.5">{s.badge}</span>
-            )}
-            {selected.includes(s.id) && (
-              <span className="text-blue-600 font-bold">✓</span>
+              <span className="text-xs bg-blue-600 text-white px-2 py-0.5 flex-shrink-0">{s.badge}</span>
             )}
           </button>
         ))}
