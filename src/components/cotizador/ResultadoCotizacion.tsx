@@ -45,11 +45,12 @@ export default function ResultadoCotizacion({ nombre, email, total, tiempoEstima
         <span className="text-3xl text-green-600 font-light">✓</span>
       </div>
       <h2 className="text-2xl font-light text-gray-900 mb-1">¡Tu presupuesto está listo!</h2>
-      <p className="text-sm text-gray-500 mb-8">Hola <strong>{nombre}</strong>, preparamos una estimación para tu proyecto.</p>
+      <p className="text-sm text-gray-500 mb-8">Hola <strong>{nombre}</strong>, este es el presupuesto para tu proyecto.</p>
 
       <div className="bg-[#0F172A] p-6 mb-6">
-        <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Inversión estimada</p>
-        <p className="text-3xl font-light text-white">DESDE {fmt(total)}</p>
+        <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Precio fijo de tu proyecto</p>
+        <p className="text-3xl font-light text-white">{fmt(total)}</p>
+        <p className="text-xs text-gray-400 mt-2">Este es el precio final. No hay costos ocultos ni sorpresas.</p>
       </div>
 
       <div className="bg-gray-50 p-4 mb-6 text-left">
