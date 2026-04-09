@@ -45,16 +45,18 @@ export default function ResultadoCotizacion({ nombre, email, total, tiempoEstima
         <span className="text-3xl text-green-600 font-light">✓</span>
       </div>
       <h2 className="text-2xl font-light text-gray-900 mb-1">¡Tu presupuesto está listo!</h2>
-      <p className="text-sm text-gray-500 mb-8">Hola <strong>{nombre}</strong>, este es el presupuesto para tu proyecto.</p>
+      <p className="text-sm text-gray-500 mb-8">Hola <strong>{nombre}</strong>, este es el precio de tu proyecto.</p>
 
-      <div className="bg-[#0F172A] p-6 mb-6">
-        <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">Precio fijo de tu proyecto</p>
+      <div className="bg-[#0F172A] p-6 mb-3">
+        <p className="text-xs text-gray-400 uppercase tracking-widest mb-2">El precio de tu proyecto es</p>
         <p className="text-3xl font-light text-white">{fmt(total)}</p>
-        <p className="text-xs text-gray-400 mt-2">Este es el precio final. No hay costos ocultos ni sorpresas.</p>
+      </div>
+      <div className="bg-green-50 border border-green-100 px-4 py-3 mb-6 text-center">
+        <p className="text-xs text-green-700 font-medium">✓ Precio fijo garantizado — sin costos adicionales ni sorpresas</p>
       </div>
 
       <div className="bg-gray-50 p-4 mb-6 text-left">
-        <p className="text-sm text-gray-600"><strong>Tiempo estimado:</strong> {tiempoEstimado}</p>
+        <p className="text-sm text-gray-600"><strong>Tiempo de entrega:</strong> {tiempoEstimado}</p>
       </div>
 
       <p className="text-xs text-gray-400 mb-6">
