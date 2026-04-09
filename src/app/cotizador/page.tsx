@@ -19,7 +19,7 @@ export default function CotizadorPage() {
             Calculá el precio de <strong>tu proyecto</strong>
           </h1>
           <p className="text-sm text-gray-500">
-            Sin registrarte. Sin compromiso. Recibís tu presupuesto estimado por email.
+            Sin registrarte. Sin compromiso. Recibís tu presupuesto por email.
           </p>
         </div>
         <CotizadorWizard />

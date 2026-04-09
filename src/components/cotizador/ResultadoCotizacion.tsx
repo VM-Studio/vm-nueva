@@ -52,7 +52,7 @@ export default function ResultadoCotizacion({ nombre, email, total, tiempoEstima
         <p className="text-3xl font-light text-white">{fmt(total)}</p>
       </div>
       <div className="bg-green-50 border border-green-100 px-4 py-3 mb-6 text-center">
-        <p className="text-xs text-green-700 font-medium">✓ Precio fijo garantizado — sin costos adicionales ni sorpresas</p>
+        <p className="text-xs text-green-700 font-medium">✓ Precio fijo garantizado — sin costos adicionales.</p>
       </div>
 
       <div className="bg-gray-50 p-4 mb-6 text-left">
