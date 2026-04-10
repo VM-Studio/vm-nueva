@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
@@ -34,6 +36,9 @@ interface Props {
 }
 
 export default function ResultadoCotizacion({ nombre, email, total, tiempoEstimado, pdfUrl, presupuestoNumber, onReset }: Props) {
+  const [quiereContacto, setQuiereContacto] = useState<'si' | 'no' | null>(null)
+  const [medioContacto, setMedioContacto] = useState<string>('')
+
   const fmt = (n: number) => `$${n.toLocaleString('es-AR')} ARS`
   const waText = encodeURIComponent(`Hola! Acabo de generar el presupuesto ${presupuestoNumber} en vmstudioweb.online y quiero más información`)
   const waUrl = `https://wa.me/541124508191?text=${waText}`
@@ -53,6 +58,63 @@ export default function ResultadoCotizacion({ nombre, email, total, tiempoEstima
       </div>
       <div className="bg-green-50 border border-green-100 px-4 py-3 mb-6 text-center">
         <p className="text-xs text-green-700 font-medium">✓ Precio fijo garantizado — sin costos adicionales.</p>
+      </div>
+
+      {/* Sección de contacto adicional */}
+      <div className="border border-gray-200 p-5 mb-6 text-left">
+        <p className="text-sm font-medium text-gray-800 mb-4">¿Querés que te contactemos para más asesoramiento?</p>
+        <div className="flex gap-3 mb-4">
+          {[
+            { val: 'si' as const, label: 'Sí, me interesa' },
+            { val: 'no' as const, label: 'No por ahora' },
+          ].map(o => (
+            <button
+              key={o.val}
+              onClick={() => { setQuiereContacto(o.val); setMedioContacto('') }}
+              className={`flex-1 py-2.5 text-sm border transition-all
+                ${quiereContacto === o.val
+                  ? 'border-blue-600 bg-blue-50 text-blue-700 font-medium'
+                  : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}
+            >
+              {o.label}
+            </button>
+          ))}
+        </div>
+
+        {quiereContacto === 'si' && (
+          <div>
+            <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Por qué medio preferís que te contactemos?</p>
+            <div className="flex gap-3">
+              {[
+                { id: 'whatsapp', label: 'WhatsApp' },
+                { id: 'email', label: 'Email' },
+                { id: 'llamada', label: 'Llamada' },
+              ].map(o => (
+                <button
+                  key={o.id}
+                  onClick={() => setMedioContacto(o.id)}
+                  className={`flex-1 py-2.5 text-sm border transition-all
+                    ${medioContacto === o.id
+                      ? 'border-blue-600 bg-blue-50 text-blue-700 font-medium'
+                      : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}
+                >
+                  {o.label}
+                </button>
+              ))}
+            </div>
+            {medioContacto && (
+              <p className="text-xs text-green-700 bg-green-50 border border-green-100 px-3 py-2 mt-3">
+                ✓ Perfecto, ¡nos comunicamos por <strong>{medioContacto === 'whatsapp' ? 'WhatsApp' : medioContacto === 'email' ? 'Email' : 'llamada'}</strong> a la brevedad!
+              </p>
+            )}
+          </div>
+        )}
+
+        {quiereContacto === 'no' && (
+          <p className="text-xs text-gray-500">
+            ¡Está bien! Si en algún momento cambiás de opinión, podés escribirnos por WhatsApp.
+          </p>
+        )}
       </div>
 
       <div className="bg-gray-50 p-4 mb-6 text-left">

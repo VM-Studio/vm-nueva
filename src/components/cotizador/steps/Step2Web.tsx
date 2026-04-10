@@ -139,7 +139,7 @@ export default function Step2Web({ webTipo, webPaginas, webContacto, webExtras, 
         </div>
       </div>
       <div>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cuántas secciones o páginas tiene tu web?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cuántas secciones o páginas tiene tu web? *</p>
         <p className="text-xs text-gray-400 mb-3">Cada sección es una parte diferente del sitio: Inicio, Servicios, Nosotros, Contacto, etc.</p>
         <div className="flex gap-3">
           {PAGINAS.map(p => (
@@ -153,7 +153,7 @@ export default function Step2Web({ webTipo, webPaginas, webContacto, webExtras, 
         </div>
       </div>
       <div>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cómo querés que te contacten los clientes?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cómo querés que te contacten los clientes? *</p>
         <p className="text-xs text-gray-400 mb-3">Podés elegir las dos opciones</p>
         <div className="flex gap-3">
           {CONTACTO.map(c => (

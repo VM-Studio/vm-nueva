@@ -7,14 +7,13 @@ interface Props {
   empresa: string
   email: string
   whatsapp: string
-  preferenciaContacto: string
   aceptaContacto: boolean
   onChange: (field: string, val: string | boolean) => void
   onSubmit: () => void
   isSubmitting: boolean
 }
 
-export default function Step6Datos({ nombre, empresa, email, whatsapp, preferenciaContacto, aceptaContacto, onChange, onSubmit, isSubmitting }: Props) {
+export default function Step6Datos({ nombre, empresa, email, whatsapp, aceptaContacto, onChange, onSubmit, isSubmitting }: Props) {
   return (
     <div className="space-y-6">
       <div>
@@ -30,9 +29,9 @@ export default function Step6Datos({ nombre, empresa, email, whatsapp, preferenc
             className="w-full mt-1 px-4 py-3 border border-gray-200 text-base text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
         </div>
         <div>
-          <label className="text-xs font-medium text-gray-600 uppercase tracking-wider">EMPRESA / NEGOCIO</label>
+          <label className="text-xs font-medium text-gray-600 uppercase tracking-wider">EMPRESA / NEGOCIO *</label>
           <input type="text" value={empresa} onChange={e => onChange('empresa', e.target.value)}
-            placeholder="Nombre de tu empresa (opcional)"
+            placeholder="Nombre de tu empresa o negocio"
             className="w-full mt-1 px-4 py-3 border border-gray-200 text-base text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
         </div>
         <div>
@@ -47,22 +46,6 @@ export default function Step6Datos({ nombre, empresa, email, whatsapp, preferenc
             placeholder="+54 9 11 1234-5678"
             className="w-full mt-1 px-4 py-3 border border-gray-200 text-base text-black placeholder-gray-400 focus:outline-none focus:border-blue-600 bg-white" />
         </div>
-        <div>
-          <label className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-2 block">¿CÓMO PREFERÍS QUE TE CONTACTEMOS?</label>
-          <div className="flex gap-3">
-            {[
-              { id: 'whatsapp', label: 'WhatsApp' },
-              { id: 'email', label: 'Email' },
-              { id: 'llamada', label: 'Llamada' },
-            ].map(o => (
-              <button key={o.id} onClick={() => onChange('preferenciaContacto', o.id)}
-                className={`flex-1 py-2.5 text-sm border transition-all
-                  ${preferenciaContacto === o.id ? 'border-blue-600 bg-blue-50 text-blue-700 font-medium' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}>
-                {o.label}
-              </button>
-            ))}
-          </div>
-        </div>
         <div className="flex items-start gap-3 min-h-[44px] cursor-pointer" onClick={() => onChange('aceptaContacto', !aceptaContacto)}>
           <div
             className={`w-5 h-5 border-2 flex-shrink-0 mt-0.5 flex items-center justify-center transition-all pointer-events-none
@@ -76,7 +59,7 @@ export default function Step6Datos({ nombre, empresa, email, whatsapp, preferenc
       </div>
       <button
         onClick={onSubmit}
-        disabled={isSubmitting || !nombre || !email || !whatsapp || !aceptaContacto}
+        disabled={isSubmitting || !nombre || !empresa || !email || !whatsapp || !aceptaContacto}
         className="w-full py-4 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-widest uppercase hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
       >
         {isSubmitting ? 'Calculando...' : 'CALCULAR MI PRESUPUESTO →'}

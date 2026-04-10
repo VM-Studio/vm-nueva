@@ -117,7 +117,7 @@ export default function Step3App({ appTipo, appRubro, appExtras, onChange }: Pro
         </div>
       </div>
       <div>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿A qué rubro pertenece tu negocio?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿A qué rubro pertenece tu negocio? *</p>
         <div className="space-y-2">
           {RUBROS.map(r => (
             <button key={r} onClick={() => onChange('appRubro', r)}

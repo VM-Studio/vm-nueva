@@ -31,7 +31,7 @@ export default function Step5General({ etapaNegocio, tieneWeb, urlWebActual, cua
         <h2 className="text-xl font-light text-gray-900 mb-4">Contanos sobre tu negocio</h2>
       </div>
       <div>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿En qué momento está tu negocio hoy?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿En qué momento está tu negocio hoy? *</p>
         <div className="space-y-2">
           {ETAPAS.map(e => (
             <button key={e.id} onClick={() => onChange('etapaNegocio', e.id)}
@@ -47,7 +47,7 @@ export default function Step5General({ etapaNegocio, tieneWeb, urlWebActual, cua
         </div>
       </div>
       <div>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Tenés página web actualmente?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Tenés página web actualmente? *</p>
         <div className="flex gap-3">
           {[{ val: true, label: 'Sí, tengo web' }, { val: false, label: 'No tengo web' }].map(o => (
             <button key={String(o.val)} onClick={() => onChange('tieneWeb', o.val)}
@@ -68,7 +68,7 @@ export default function Step5General({ etapaNegocio, tieneWeb, urlWebActual, cua
         )}
       </div>
       <div>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Para cuándo necesitás esto?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Para cuándo necesitás esto? *</p>
         <div className="space-y-2">
           {CUANDOEMPEZAR.map(c => (
             <button key={c.id} onClick={() => onChange('cuandoEmpezar', c.id)}
@@ -84,7 +84,7 @@ export default function Step5General({ etapaNegocio, tieneWeb, urlWebActual, cua
         </div>
       </div>
       <div>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cómo llegaste a VM Studio?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cómo llegaste a VM Studio? *</p>
         <div className="space-y-2">
           {['Google', 'Instagram', 'Facebook', 'Recomendación de alguien', 'Otro'].map(c => (
             <button key={c} onClick={() => onChange('comoNosConocio', c)}

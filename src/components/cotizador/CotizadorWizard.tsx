@@ -33,7 +33,6 @@ interface FormState {
   empresa: string
   email: string
   whatsapp: string
-  preferenciaContacto: string
   aceptaContacto: boolean
 }
 
@@ -45,7 +44,7 @@ const INITIAL: FormState = {
   etapaNegocio: '', tieneWeb: undefined, urlWebActual: '',
   cuandoEmpezar: '', comoNosConocio: '',
   nombre: '', empresa: '', email: '', whatsapp: '',
-  preferenciaContacto: '', aceptaContacto: false,
+  aceptaContacto: false,
 }
 
 interface Resultado {
@@ -103,13 +102,27 @@ export default function CotizadorWizard() {
       setError('Seleccioná al menos un servicio para continuar.')
       return
     }
-    if (currentStep === 2 && !form.webTipo) {
-      setError('Seleccioná el tipo de web.')
-      return
+    if (currentStep === 2) {
+      if (!form.webTipo) { setError('Seleccioná el tipo de web.'); return }
+      if (!form.webPaginas) { setError('Seleccioná la cantidad de páginas.'); return }
+      if (form.webContacto.length === 0) { setError('Seleccioná al menos una forma de contacto.'); return }
     }
-    if (currentStep === 3 && !form.appTipo) {
-      setError('Seleccioná el tipo de aplicación.')
-      return
+    if (currentStep === 3) {
+      if (!form.appTipo) { setError('Seleccioná el tipo de aplicación.'); return }
+      if (!form.appRubro) { setError('Seleccioná el rubro de tu negocio.'); return }
+    }
+    if (currentStep === 4) {
+      const needsGoogle = form.servicios.includes('google_ads') || form.servicios.includes('combo_ads')
+      const needsMeta = form.servicios.includes('meta_ads') || form.servicios.includes('combo_ads')
+      if (needsGoogle && !form.googleInversion) { setError('Seleccioná el presupuesto para Google.'); return }
+      if (needsMeta && !form.metaInversion) { setError('Seleccioná el presupuesto para Instagram/Facebook.'); return }
+      if (form.tieneCuentaAds === undefined) { setError('Indicá si ya tenés cuenta de publicidad.'); return }
+    }
+    if (currentStep === 5) {
+      if (!form.etapaNegocio) { setError('Seleccioná en qué etapa está tu negocio.'); return }
+      if (form.tieneWeb === undefined) { setError('Indicá si ya tenés página web.'); return }
+      if (!form.cuandoEmpezar) { setError('Seleccioná cuándo querés empezar.'); return }
+      if (!form.comoNosConocio) { setError('Contanos cómo llegaste a VM Studio.'); return }
     }
     const nextIdx = currentIdx + 1
     if (nextIdx < activeSteps.length) {
@@ -129,10 +142,10 @@ export default function CotizadorWizard() {
 
   const handleSubmit = async () => {
     setError('')
-    if (!form.nombre || !form.email || !form.whatsapp) {
-      setError('Completá nombre, email y WhatsApp.')
-      return
-    }
+    if (!form.nombre) { setError('Ingresá tu nombre completo.'); return }
+    if (!form.empresa) { setError('Ingresá el nombre de tu empresa o negocio.'); return }
+    if (!form.email) { setError('Ingresá tu email.'); return }
+    if (!form.whatsapp) { setError('Ingresá tu número de WhatsApp.'); return }
     if (!form.aceptaContacto) {
       setError('Aceptá el checkbox para continuar.')
       return
@@ -173,7 +186,6 @@ export default function CotizadorWizard() {
             empresa: form.empresa,
             email: form.email,
             whatsapp: form.whatsapp,
-            preferenciaContacto: form.preferenciaContacto,
           },
         }),
       })
@@ -230,7 +242,7 @@ export default function CotizadorWizard() {
         {currentStep === 3 && <Step3App appTipo={form.appTipo} appRubro={form.appRubro} appExtras={form.appExtras} onChange={setField} />}
         {currentStep === 4 && <Step4Ads servicios={form.servicios} googleInversion={form.googleInversion} metaInversion={form.metaInversion} tieneCuentaAds={form.tieneCuentaAds} onChange={setField} />}
         {currentStep === 5 && <Step5General etapaNegocio={form.etapaNegocio} tieneWeb={form.tieneWeb} urlWebActual={form.urlWebActual} cuandoEmpezar={form.cuandoEmpezar} comoNosConocio={form.comoNosConocio} onChange={setField} />}
-        {currentStep === 6 && <Step6Datos nombre={form.nombre} empresa={form.empresa} email={form.email} whatsapp={form.whatsapp} preferenciaContacto={form.preferenciaContacto} aceptaContacto={form.aceptaContacto} onChange={setField} onSubmit={handleSubmit} isSubmitting={isSubmitting} />}
+        {currentStep === 6 && <Step6Datos nombre={form.nombre} empresa={form.empresa} email={form.email} whatsapp={form.whatsapp} aceptaContacto={form.aceptaContacto} onChange={setField} onSubmit={handleSubmit} isSubmitting={isSubmitting} />}
       </div>
       {error && <p className="text-sm text-red-500 mt-4">{error}</p>}
       {currentStep !== 6 && (

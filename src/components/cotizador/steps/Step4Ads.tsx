@@ -35,7 +35,7 @@ export default function Step4Ads({ servicios, googleInversion, metaInversion, ti
       </div>
       {showGoogle && (
         <div>
-          <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">¿Cuánto querés gastar en publicidad de Google por mes?</p>
+          <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">¿Cuánto querés gastar en publicidad de Google por mes? *</p>
           <p className="text-xs text-gray-400 mb-3">Este dinero va directo a Google, no es el honorario de VM Studio. Es lo que Google cobra por mostrar tu anuncio.</p>
           <div className="space-y-2">
             {GOOGLE_OPCIONES.map(o => (
@@ -54,7 +54,7 @@ export default function Step4Ads({ servicios, googleInversion, metaInversion, ti
       )}
       {showMeta && (
         <div>
-          <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">¿Cuánto querés gastar en publicidad de Instagram/Facebook por mes?</p>
+          <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-1">¿Cuánto querés gastar en publicidad de Instagram/Facebook por mes? *</p>
           <p className="text-xs text-gray-400 mb-3">Este dinero va directo a Meta (Instagram/Facebook), no es el honorario de VM Studio.</p>
           <div className="space-y-2">
             {META_OPCIONES.map(o => (
@@ -72,7 +72,7 @@ export default function Step4Ads({ servicios, googleInversion, metaInversion, ti
         </div>
       )}
       <div>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Ya tenés cuenta de publicidad creada en Google o Meta?</p>
+        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Ya tenés cuenta de publicidad creada en Google o Meta? *</p>
         <p className="text-xs text-gray-400 mb-3">Si nunca pusiste publicidad online, seguramente no tenés cuenta todavía — eso está bien.</p>
         <div className="flex gap-3">
           {[
