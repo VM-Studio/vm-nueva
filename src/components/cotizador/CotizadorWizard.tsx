@@ -5,7 +5,6 @@ import StepIndicator from './StepIndicator'
 import Step1Servicio from './steps/Step1Servicio'
 import Step2Web from './steps/Step2Web'
 import Step3App from './steps/Step3App'
-import Step4Ads from './steps/Step4Ads'
 import Step5General from './steps/Step5General'
 import Step6Datos from './steps/Step6Datos'
 import ResultadoCotizacion from './ResultadoCotizacion'
@@ -21,9 +20,6 @@ interface FormState {
   appTipo: string
   appRubro: string
   appExtras: string[]
-  googleInversion: string
-  metaInversion: string
-  tieneCuentaAds: boolean | undefined
   etapaNegocio: string
   tieneWeb: boolean | undefined
   urlWebActual: string
@@ -34,17 +30,20 @@ interface FormState {
   email: string
   whatsapp: string
   aceptaContacto: boolean
+  contactoInteres: string
+  medioContacto: string
 }
 
 const INITIAL: FormState = {
   servicios: [],
   webTipo: '', webPaginas: '', webContacto: [], webExtras: [],
   appTipo: '', appRubro: '', appExtras: [],
-  googleInversion: '', metaInversion: '', tieneCuentaAds: undefined,
   etapaNegocio: '', tieneWeb: undefined, urlWebActual: '',
   cuandoEmpezar: '', comoNosConocio: '',
   nombre: '', empresa: '', email: '', whatsapp: '',
   aceptaContacto: false,
+  contactoInteres: '',
+  medioContacto: '',
 }
 
 interface Resultado {
@@ -54,13 +53,16 @@ interface Resultado {
   presupuestoNumber: string
 }
 
-const STEP_LABELS = ['Servicio', 'Web', 'App', 'Publicidad', 'General', 'Datos']
+// Paso 2: web o landing
+// Paso 3: app_web, app_mobile, sistema_gestion
+// Paso 4: general
+// Paso 5: datos
+const STEP_LABELS = ['Servicio', 'Web / Landing', 'App / Sistema', 'General', 'Datos']
 
 function getActiveSteps(servicios: string[]) {
   const steps = [1]
-  if (servicios.includes('web')) steps.push(2)
-  if (servicios.includes('app')) steps.push(3)
-  if (servicios.some(s => ['google_ads', 'meta_ads', 'combo_ads'].includes(s))) steps.push(4)
+  if (servicios.some(s => ['web', 'landing'].includes(s))) steps.push(2)
+  if (servicios.some(s => ['app_web', 'app_mobile', 'sistema_gestion'].includes(s))) steps.push(3)
   steps.push(5, 6)
   return steps
 }
@@ -104,19 +106,13 @@ export default function CotizadorWizard() {
     }
     if (currentStep === 2) {
       if (!form.webTipo) { setError('Seleccioná el tipo de web.'); return }
-      if (!form.webPaginas) { setError('Seleccioná la cantidad de páginas.'); return }
+      const soloLanding = form.servicios.includes('landing') && !form.servicios.includes('web')
+      if (!soloLanding && !form.webPaginas) { setError('Seleccioná la cantidad de páginas.'); return }
       if (form.webContacto.length === 0) { setError('Seleccioná al menos una forma de contacto.'); return }
     }
     if (currentStep === 3) {
       if (!form.appTipo) { setError('Seleccioná el tipo de aplicación.'); return }
       if (!form.appRubro) { setError('Seleccioná el rubro de tu negocio.'); return }
-    }
-    if (currentStep === 4) {
-      const needsGoogle = form.servicios.includes('google_ads') || form.servicios.includes('combo_ads')
-      const needsMeta = form.servicios.includes('meta_ads') || form.servicios.includes('combo_ads')
-      if (needsGoogle && !form.googleInversion) { setError('Seleccioná el presupuesto para Google.'); return }
-      if (needsMeta && !form.metaInversion) { setError('Seleccioná el presupuesto para Instagram/Facebook.'); return }
-      if (form.tieneCuentaAds === undefined) { setError('Indicá si ya tenés cuenta de publicidad.'); return }
     }
     if (currentStep === 5) {
       if (!form.etapaNegocio) { setError('Seleccioná en qué etapa está tu negocio.'); return }
@@ -169,11 +165,6 @@ export default function CotizadorWizard() {
             rubro: form.appRubro,
             extras: form.appExtras,
           },
-          ads: {
-            googlePresupuesto: form.googleInversion,
-            metaPresupuesto: form.metaInversion,
-            tieneCuenta: form.tieneCuentaAds,
-          },
           general: {
             etapa: form.etapaNegocio,
             tieneWeb: form.tieneWeb,
@@ -186,6 +177,8 @@ export default function CotizadorWizard() {
             empresa: form.empresa,
             email: form.email,
             whatsapp: form.whatsapp,
+            contactoInteres: form.contactoInteres,
+            medioContacto: form.medioContacto,
           },
         }),
       })
@@ -238,11 +231,10 @@ export default function CotizadorWizard() {
       />
       <div className="min-h-[350px] mt-6">
         {currentStep === 1 && <Step1Servicio selected={form.servicios} onChange={val => setField('servicios', val)} />}
-        {currentStep === 2 && <Step2Web webTipo={form.webTipo} webPaginas={form.webPaginas} webContacto={form.webContacto} webExtras={form.webExtras} onChange={setField} />}
-        {currentStep === 3 && <Step3App appTipo={form.appTipo} appRubro={form.appRubro} appExtras={form.appExtras} onChange={setField} />}
-        {currentStep === 4 && <Step4Ads servicios={form.servicios} googleInversion={form.googleInversion} metaInversion={form.metaInversion} tieneCuentaAds={form.tieneCuentaAds} onChange={setField} />}
+        {currentStep === 2 && <Step2Web webTipo={form.webTipo} webPaginas={form.webPaginas} webContacto={form.webContacto} webExtras={form.webExtras} servicios={form.servicios} onChange={setField} />}
+        {currentStep === 3 && <Step3App appTipo={form.appTipo} appRubro={form.appRubro} appExtras={form.appExtras} servicios={form.servicios} onChange={setField} />}
         {currentStep === 5 && <Step5General etapaNegocio={form.etapaNegocio} tieneWeb={form.tieneWeb} urlWebActual={form.urlWebActual} cuandoEmpezar={form.cuandoEmpezar} comoNosConocio={form.comoNosConocio} onChange={setField} />}
-        {currentStep === 6 && <Step6Datos nombre={form.nombre} empresa={form.empresa} email={form.email} whatsapp={form.whatsapp} aceptaContacto={form.aceptaContacto} onChange={setField} onSubmit={handleSubmit} isSubmitting={isSubmitting} />}
+        {currentStep === 6 && <Step6Datos nombre={form.nombre} empresa={form.empresa} email={form.email} whatsapp={form.whatsapp} aceptaContacto={form.aceptaContacto} contactoInteres={form.contactoInteres} medioContacto={form.medioContacto} onChange={setField} onSubmit={handleSubmit} isSubmitting={isSubmitting} />}
       </div>
       {error && <p className="text-sm text-red-500 mt-4">{error}</p>}
       {currentStep !== 6 && (

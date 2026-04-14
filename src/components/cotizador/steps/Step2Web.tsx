@@ -5,6 +5,7 @@ interface Props {
   webPaginas: string
   webContacto: string[]
   webExtras: string[]
+  servicios: string[]
   onChange: (field: string, val: string | string[]) => void
 }
 
@@ -110,7 +111,9 @@ const EXTRAS = [
   },
 ]
 
-export default function Step2Web({ webTipo, webPaginas, webContacto, webExtras, onChange }: Props) {
+export default function Step2Web({ webTipo, webPaginas, webContacto, webExtras, servicios, onChange }: Props) {
+  const soloLanding = servicios.includes('landing') && !servicios.includes('web')
+
   const toggleArr = (field: string, arr: string[], id: string) => {
     const next = arr.includes(id) ? arr.filter(x => x !== id) : [...arr, id]
     onChange(field, next)
@@ -120,7 +123,9 @@ export default function Step2Web({ webTipo, webPaginas, webContacto, webExtras, 
     <div className="space-y-8">
       <div>
         <p className="text-xs text-gray-400 uppercase tracking-widest mb-1">Paso 2</p>
-        <h2 className="text-xl font-light text-gray-900 mb-4">Contanos sobre tu web</h2>
+        <h2 className="text-xl font-light text-gray-900 mb-4">
+          {soloLanding ? 'Contanos sobre tu landing page' : 'Contanos sobre tu web'}
+        </h2>
       </div>
       <div>
         <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Para qué va a servir tu web?</p>
@@ -138,20 +143,22 @@ export default function Step2Web({ webTipo, webPaginas, webContacto, webExtras, 
           ))}
         </div>
       </div>
-      <div>
-        <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cuántas secciones o páginas tiene tu web? *</p>
-        <p className="text-xs text-gray-400 mb-3">Cada sección es una parte diferente del sitio: Inicio, Servicios, Nosotros, Contacto, etc.</p>
-        <div className="flex gap-3">
-          {PAGINAS.map(p => (
-            <button key={p.id} onClick={() => onChange('webPaginas', p.id)}
-              className={`flex-1 py-2.5 px-2 text-sm border transition-all text-center
-                ${webPaginas === p.id ? 'border-blue-600 bg-blue-50 text-blue-700 font-medium' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}>
-              <span className="block font-medium">{p.label}</span>
-              <span className="block text-xs text-gray-400 mt-0.5">{p.desc}</span>
-            </button>
-          ))}
+      {!soloLanding && (
+        <div>
+          <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cuántas secciones o páginas tiene tu web? *</p>
+          <p className="text-xs text-gray-400 mb-3">Cada sección es una parte diferente del sitio: Inicio, Servicios, Nosotros, Contacto, etc.</p>
+          <div className="flex gap-3">
+            {PAGINAS.map(p => (
+              <button key={p.id} onClick={() => onChange('webPaginas', p.id)}
+                className={`flex-1 py-2.5 px-2 text-sm border transition-all text-center
+                  ${webPaginas === p.id ? 'border-blue-600 bg-blue-50 text-blue-700 font-medium' : 'border-gray-200 text-gray-600 hover:border-gray-300'}`}>
+                <span className="block font-medium">{p.label}</span>
+                <span className="block text-xs text-gray-400 mt-0.5">{p.desc}</span>
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <div>
         <p className="text-xs font-medium text-gray-600 uppercase tracking-wider mb-3">¿Cómo querés que te contacten los clientes? *</p>
         <p className="text-xs text-gray-400 mb-3">Podés elegir las dos opciones</p>
