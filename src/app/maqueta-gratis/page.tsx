@@ -9,21 +9,21 @@ const PASOS = [
     num: '01',
     title: 'Nos contás tu negocio',
     desc: 'En menos de 5 minutos por WhatsApp nos explicás qué hacés, quiénes son tus clientes y qué objetivos tenés para tu web.',
-    icon: '💬',
+    icon: '01',
     duration: 'HOY',
   },
   {
     num: '02',
     title: 'Diseñamos tu maqueta',
     desc: 'Nuestro equipo estudia tu rubro, analiza a tu competencia y arma una maqueta real y personalizada — no un template genérico.',
-    icon: '🎨',
+    icon: '02',
     duration: '48 HORAS',
   },
   {
     num: '03',
     title: 'Te la mostramos',
     desc: 'Te presentamos la maqueta y la revisamos juntos. Si te gusta, empezamos. Si no, no te cobramos nada. Así de simple.',
-    icon: '✅',
+    icon: '03',
     duration: 'SIN COSTO',
   },
 ];
@@ -110,7 +110,7 @@ export default function MaquetaGratis() {
             </a>
 
             <p className="mt-4 text-xs text-gray-400 tracking-wider">
-              ↓ Respondemos en menos de 2 horas en horario hábil
+              Respondemos en menos de 2 horas en horario hábil
             </p>
           </div>
         </div>
@@ -216,7 +216,7 @@ export default function MaquetaGratis() {
             </div>
 
             <p className="text-center text-xs text-gray-500 mt-4 tracking-wider">
-              ↑ Así se ve una maqueta web — con tus colores, tu logo y tu contenido real
+              Así se ve una maqueta web — con tus colores, tu logo y tu contenido real
             </p>
           </div>
         </div>
@@ -237,7 +237,7 @@ export default function MaquetaGratis() {
               <div className="space-y-3">
                 {INCLUYE.map((item, i) => (
                   <div key={i} className="flex items-start gap-4 p-4 border border-gray-100 hover:border-blue-200 hover:bg-blue-50/30 transition-colors duration-200">
-                    <span className="text-blue-600 font-medium text-lg flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-blue-600 font-medium text-lg flex-shrink-0 mt-0.5">—</span>
                     <span className="text-gray-700 text-sm leading-relaxed">{item.label}</span>
                   </div>
                 ))}
@@ -251,7 +251,7 @@ export default function MaquetaGratis() {
                 <div className="space-y-4">
                   {NO_INCLUYE.map((item, i) => (
                     <div key={i} className="flex items-center gap-4">
-                      <span className="w-7 h-7 border border-red-500/40 bg-red-500/10 flex items-center justify-center text-red-400 text-sm flex-shrink-0">✕</span>
+                      <span className="w-7 h-7 border border-red-500/40 bg-red-500/10 flex items-center justify-center text-red-400 text-sm flex-shrink-0 font-medium">×</span>
                       <span className="text-gray-300 text-sm">{item}</span>
                     </div>
                   ))}
@@ -293,7 +293,7 @@ export default function MaquetaGratis() {
                   <div className="bg-white border border-gray-200 group-hover:border-blue-400 group-hover:shadow-xl transition-all duration-300 p-8 h-full">
                     <div className="flex items-start justify-between mb-6">
                       <div className="w-14 h-14 bg-gradient-to-br from-gray-900 to-blue-700 flex items-center justify-center">
-                        <span className="text-xl">{paso.icon}</span>
+                        <span className="text-sm font-medium text-white tracking-wider">{paso.icon}</span>
                       </div>
                       <span className="text-[10px] font-medium tracking-[0.2em] text-blue-600 bg-blue-50 border border-blue-100 px-2 py-1">
                         {paso.duration}
@@ -325,16 +325,16 @@ export default function MaquetaGratis() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { icon: '🏪', text: 'Tenés un negocio y todavía no tenés web' },
-              { icon: '🔄', text: 'Tu web actual está desactualizada y no te genera clientes' },
-              { icon: '💡', text: 'Tenés una idea pero no sabés cómo se vería en web' },
-              { icon: '💰', text: 'Querés saber el costo antes de comprometerte' },
-              { icon: '🚀', text: 'Estás arrancando un emprendimiento y necesitás presencia online' },
-              { icon: '🎯', text: 'Comparaste opciones y no te convencen los diseños genéricos' },
+              { num: '01', text: 'Tenés un negocio y todavía no tenés web' },
+              { num: '02', text: 'Tu web actual está desactualizada y no te genera clientes' },
+              { num: '03', text: 'Tenés una idea pero no sabés cómo se vería en web' },
+              { num: '04', text: 'Querés saber el costo antes de comprometerte' },
+              { num: '05', text: 'Estás arrancando un emprendimiento y necesitás presencia online' },
+              { num: '06', text: 'Comparaste opciones y no te convencen los diseños genéricos' },
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4 p-5 border border-gray-100 hover:border-blue-200 hover:bg-blue-50/20 transition-all duration-200">
-                <span className="text-2xl flex-shrink-0">{item.icon}</span>
-                <p className="text-sm text-gray-700 leading-relaxed mt-1">{item.text}</p>
+                <span className="text-[11px] font-medium text-blue-600 tracking-widest flex-shrink-0 mt-0.5">{item.num}</span>
+                <p className="text-sm text-gray-700 leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
