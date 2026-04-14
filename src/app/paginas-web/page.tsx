@@ -90,7 +90,7 @@ export default function LandingPaginasWeb() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/cotizador"
+                  href="/maqueta-gratis"
                   className="
                     group relative px-6 sm:px-8 py-4
                     bg-gradient-to-r from-gray-900 to-blue-700
@@ -185,7 +185,7 @@ export default function LandingPaginasWeb() {
             </span>
           </h2>
           <Link
-            href="/cotizador"
+            href="/maqueta-gratis"
             className="inline-block px-8 sm:px-12 py-4 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-[0.98]"
           >
             PEDIR MAQUETA WEB GRATIS
@@ -310,7 +310,7 @@ export default function LandingPaginasWeb() {
               <span className="block mt-2">Sin compromiso. Sin costo.</span>
             </p>
             <Link
-              href="/cotizador"
+              href="/maqueta-gratis"
               className="inline-block w-full sm:w-auto px-8 sm:px-12 py-4 bg-gradient-to-r from-gray-900 to-blue-700 text-white text-sm font-medium tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-2xl active:scale-[0.98]"
             >
               PEDIR MAQUETA WEB GRATIS

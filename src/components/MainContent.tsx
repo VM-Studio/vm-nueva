@@ -104,7 +104,7 @@ const MainContent: React.FC = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
-                  href="/cotizador"
+                  href="/maqueta-gratis"
                   className="
                     group relative px-6 sm:px-8 py-4 
                     bg-gradient-to-r from-gray-900 to-blue-700
@@ -448,7 +448,7 @@ const MainContent: React.FC = () => {
             </p>
             
             <Link
-              href="/cotizador"
+              href="/maqueta-gratis"
               className="
                 inline-block px-8 sm:px-12 py-4
                 bg-gradient-to-r from-gray-900 to-blue-700
